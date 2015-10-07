@@ -1,0 +1,364 @@
+
+\documentclass[10pt,a5paper]{article}
+
+\usepackage[latin5]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=0.05cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+\author{Christian Böhm}
+\usepackage{color}
+\definecolor{grey}{RGB}{211,211,211}
+\newcommand{\cbg}[1]{\colorbox{grey}{#1}}
+
+\begin{document}
+\section{Information, Nachrichten}
+\begin{itemize}
+\item Informatik als Wissenschaft von der maschinelle Verarbeitung von Information
+\subitem geeignete Darstellung von Information in einem Rechner
+\subitem Eine abstrakte Information wird durch einen konkrete Nachrichten übermittelt. Einen Nachricht ist eine Sequenz von eichen aus einem vorgegebenen Zeichenvorrat.
+\item Eine Nachricht kann verschieden Informationen enthalten und/oder unterschiedlich interpretiert werden, Sie kann an einen und mehrere Empfänger geschickt werden.
+\item Es gibt eine Informationsvorschrift f, die mit dem Absender vereinbart ist
+\item Nachrichtenträger:
+\subitem Frequenz, Amplitude, Stromstärke, elektrische Spannung
+\item der zeitliche Verlauf einer physikalischen Größe die eine Nachricht überträgt heißt Signal, die Kenngröße heißt Signalparameter
+\subitem wenn der Signalparameter nur endlich viele Werte annehmen kann heißt das Signal digital
+\item Ein Zeichen wird definiert als Element einer endlichen Menge unterscheidbarer "Dinge". Diese Menge wird als Zeichenvorrat bezeichnet
+\subitem Ein Zeichenvorrad, der eine Reihenfolge hat wird als Alphabet bezeichnet
+\end{itemize}
+\section{Codierungen}
+\begin{itemize}
+\item Eine Vorschrift zur Abbildung eines Zeichenvorrats in einen andere Zeichenvorrat heißt Code
+\item in technischen Codes werden Buchstaben, Ziffern und ggf. andere Zeichen fast immer durch Binärworte codiert
+\subitem bei Computern werden meistens Erweiterungen von ASCII-Code verwendet (Alle ASCII Zeichen sind kompatibel)
+\end{itemize}
+\section{Betriebssysteme}
+\begin{itemize}
+\item Sammlung von Programmen zur Verwaltung der Hardware
+\item Schichtmodell:
+\subitem Schicht nutzt ausschließlich Dienste(Schnittstellen) der direkt darunter liegender Schicht, kein bereichsübergreifender Zugriff
+\item Aufgaben \begin{itemize}
+\item Verwaltung des Hauptspeichers
+\item Verwaltung des Zugriffs auf der Peripherie
+\item Steuerung des Ablaufs von Programmen
+\item Zugriffsschutz
+\item Abrechnungsinformation
+\end{itemize}
+\item Im Detail
+\subitem Verwaltung einer Festplatte\begin{itemize}
+\item Blockweise Übertragung von externem  Speicher vom/zum Rechner
+\item Dateien belegen i.d.R. mehrere Blöcke auf der Festplatte (meist nicht konsekutiv)
+\item Zusätzlich zum Inhalt wird für jede Datei weitere Information verwaltet
+\item Anlegen Wiederfinden, Ändern, Löschen einer Datei
+\item Verwalten der Dateiblöcke
+\item Koordination der Plattenzugriffe (Minimale Bewegungen des Schreib-/Lesekopfs)
+\end{itemize}
+\subitem Prozessverwaltung:\begin{itemize}
+\item Prozess: Eingenständer Ablauf eines Programms auf einem Rechner
+\item Mehrprozesssysteme (Mehren Programme von einem oder mehreren Benutzen laufen Parallel auf dem selben Rechner)
+\item Zuteilung von Ressourcen an Prozesse
+\item Schutz der Prozesse voreinander vor gegenseitiger Störung
+\item Zuteilung von Rechenzeit an Prozesse am Beispiel von Zeitscheiben (time slicing)
+\item Prinzip:
+\subitem Prozess bekomme den Prozessor exklusiv für einen bestimmten Zeitraum, wird der Prozessor einem anderen Prozess zugeteilt
+\subitem quasi parallele Abläufe mehrere Prozesse auf einem Prozessor
+\end{itemize}
+\item Speicherverwaltung:\begin{itemize}
+\item Mögliche Probleme: Prozesse greifen auf die selbe Speicherstelle zu und überschreiben gegenseitig Information
+\item Jeder Prozess bekommt seinen eigenen Speicher, der physikalisch von den Speichern andere Prozesse getrennt wird(jeder Prozess hat den Eindruck den Hauptschuldiger exklusiv zu besitzen)
+\item Speicher wird in Pages fester Größe aufgeteilt
+\item In einer Tabelle wird jeder Seite eines Prozesses eine Seite im physikalischen Speicher(Kachel)
+\item Jeder Prozess kennt nur eine logischen Adressen
+\item Betriebssystem ordnet logische Adresse zu physikalischen Adressen zu
+\item Speicher logisch größer als physikalisch
+\item Seitengröße=Blockgröße der Festplatte
+\item Jeder Seite des virtuellen Speichers wird ein Block der Festplatte zugeordnet
+\item Seitentabelle gibt an ob und ggf. in welcher Kachel des phys. Speichers die Seite liegt, oder in welchem Block der Festplatte
+\item benötigte Seite nicht im phys. Speicher \ensuremath{\Leftarrow} Holen von Platte, Auslagern einer nicht benötigten Seite auf Platte und Laden der benötigten in die frei gewordenen Kachel
+\end{itemize}
+\end{itemize}
+\section{Rechnerarchitektur}
+\subsection{Neumann Architektur}
+\begin{itemize}
+\item abstrakte, allgemein einsetzbare Rechnerarchitektur
+\item wird von heutigen Rechner umgesetzt
+\item abstrakte Sichtweise
+\item dient dem grundlegenden Verständnis der Funktionsweise eines Computers und der Abarbeitung von Software
+\item zur Lösung eines Problems muss von außen ein Programm eingegeben und im Speicher abgelegt werden
+\item Programme, Daten inkl. Zwischen- und Endergebnisse nutzen den Selben Speicher
+\item Speicher inkl. in gleich große Zellen unterteilt, die fortlaufend nummeriert sind
+\item über die Adresse eine Speicherzelle kann deren Inhalt gelesen oder geschrieben werden
+\item Ausführung eines Programms wird durch das Steuerwerk gesteuert
+\item Aufeinander folgende Befehle eines Programms werden in aufeinanderfolgenden Speicherzellen abgelegt
+\item das Ansprechen des nächtens Befehls geschieht vom Steuerwerk durch erhöhen der Befehlsadressen um eins
+\item durch Sprungbefehl kann von der Bearbeitung der befehle in der gespeicherten Reihenfolge
+\item Es gibt mindestens:\begin{itemize}
+\item arithmetische Befehle wie Vergleiche, logisches und, oder usw.
+\item Transportbefehle, z. B. von Speicher zum Rechenwert und für die Ein-/Ausgabe
+\item bedingte Sprünge
+\end{itemize}
+\item Der Speicher:\begin{itemize}
+\item für den Zugriff auf den Speicher existieren zwei Leitungen(Busse): Adressbus und Datenbus
+\item Jede Speicherzelle umfasst "Wortbreite" Bits
+\item Auf dem Adressbus wird die Adresse "Nummer" der Speicherstelle übermittelt, auf die zugegriffen werden soll
+\item soll im Speicher geschrieben werden, wird die adressierte Speicherzelle mit dem Wert auf dem Datenbus überschrieben
+\item soll im Speicher gelesen werden, wird der wert der adressierten Speicherstelle auf den Datenbus geschriebenen
+\end{itemize}
+\item Das Steuerwerk:\begin{itemize}
+\item steuert die Ausführung eines Programms
+\item hold Befehle nacheinander aus dem Speicher(fetch) in das Befehlsregister
+\item Jeder Programmbefehle besteht aus zwei Teilen:
+\subitem Der Operationsteil legt fest, was gemacht werden soll
+\subitem der Adressteil bestimmt, auf welche Daten der Befehl anzuwenden ist
+\item jeder Programmbefehl wird decodiert (decode)
+\item danach ausgeführt (execute) in dem entsprechen Funktionseinheiten(z.B Rechenwerk , Ein-/Ausgabe aktiviert werden)
+\item Das Befehlszählerregister erhöht die Speicheradresse des aktuell ausgeführten Befehls
+\item Nach Ausführung eines Befehls wird das Befehlsregister geändert und der nächsten Befehl wird geholt
+\subitem  Befehlsregister +1( falls kein Sprungbefehl)
+\subitem Sprungziel sonst
+\item Sind Daten für eine Befehlsausführung im Speicher abgelegt, so müssen diese vor Ausführung geholt bzw nach Ausführung gespeichert werden:
+\subitem zuerst wird bestimmt auf welche Speicherstelle zugegriffen werden muss (Adressbrechung: Adresse)
+\subitem dann wird der Speicherzugriff(read/write durchgeführt)
+\item Vollständiger Befehlsfluss
+\subitem \ensuremath{fetch\Leftarrow decode\Leftarrow address\Leftarrow read\Leftarrow execute \Leftarrow write}
+\end{itemize}
+\item Das Rechenwerk:\begin{itemize}
+\item Akkumulator dient als Speicher für Zwischenergebnisse
+\item Beim klassischen Von-Neumann-Modell enthält der Akkumulator immer den ersten Operanden (evlt. vorher aus dem Speicher laden!) und das Ergebnis
+\item Die Rechenlogik führt arithmetischen Operationen aus
+\end{itemize}
+\end{itemize}
+\subsection{Reale Rechnerarchitekturen}
+\begin{itemize}
+\item Laden größerer Speicherbereiche in speziellen Speicher (Cache)
+\item Bearbeitung mehrere Befehle gleichzeitig (Pipelining: Parallelität innerhalb der Befehlsausführung durch Überlagerung von Phasen aufeinanderfolgender Befehle)
+\item Befehlszyklus ohne Pipelining:
+\subitem \ensuremath{fetch\Leftarrow decode\Leftarrow address\Leftarrow read\Leftarrow execute \Leftarrow write}
+\item Befehlszyklus mit Pipelining:
+\subitem gleichzeitiges Nutzen "disjunkter" Teile des Rechenwerks (Ganzzahlarithmetik/Gleitkommaarithmetik)
+\item Speicherhierarchien
+\subitem sehr schnelle Cache Speicher
+\subitem "langsamere" Hauptspeicher
+\subitem "Langsamer" Plattenspeicher
+\item Parallele Prozessoren mit gemeinsamen Speicher (shared memory)
+\item Parallele Prozessoren mit verteilen Speicher (distributed memory)
+\end{itemize}
+\section{Zahlensysteme}
+\begin{itemize}
+\item Dezimal(Basis 10)\begin{itemize}
+\item \ensuremath{d=d_{n-1}*10^{n-1}+\dots+d_0}
+\subitem \ensuremath{d_i\in \{0,\dots,9\}}
+\end{itemize}
+\item Basis n \begin{itemize}
+\item \item \ensuremath{z=z_{n-1}*b^{n-1}+\dots+z_0}
+\subitem \ensuremath{z_i\in \{0,\dots,b-1\}}; \ensuremath{b\ge 2}
+\end{itemize}
+\item Praktisch relevante Basen:
+\subitem b = 10 (Dezimal) \ensuremath{z_{10}}
+\subitem b = 2  (Binär-/Dual) \ensuremath{z_2}
+\subitem b = 16 (Hexadezimal) \ensuremath{z_{16}}
+\subitem b = 8 (Oktal) \ensuremath{z_8}
+\subitem b = 1 (Unäre) \ensuremath{z_1} (Strichliste)
+\end{itemize}
+\subsection{Binärzahlen}
+\begin{itemize}
+\item Rechen mit Binärzahlen\begin{itemize}
+\item Addition
+\subitem \ensuremath{0+0=1;0+1=1;1+1=10}
+\item Subtraktion
+\subitem \ensuremath{0-0=0;1-0=1;1-1=0;0-1=10(\text{Übertrag})}
+\end{itemize}
+\item Umwandlung \begin{itemize}
+\item \ensuremath{Hexadezimal\Leftarrow \text{Binär}}
+\subitem Eine Hexadezimalstelle kann durch 4 Binärstellen ausgedrückt werden
+\item \ensuremath{Oktal\Leftarrow \text{Binär}}
+\subitem Eine Oktalstelle kann durch 3 Binärstellen
+\item BCD(Binäry coded Dezimal)
+\subitem jeder Dezimalziffer wird mit 4 Binärziffer dargestellt
+\end{itemize}
+\item Negative Zahlen\begin{itemize}
+\item Explizite Speicherung des Vorzeichens(+ durch 0, - durch 1)
+\item nur bei vorzeichenbehafteten Größen:
+\subitem Letzter Bit(Binär) steht für das Vorzeichen (+ durch 0, - durch 1)
+\item Komplementbildung
+\subitem Einerkomplementdarstellung (Invertieren Aller Bits) (\ensuremath{-0}(negative Null) addieren)
+\subitem Zweierkomlementdarfstellung (Invertieren aller Bits und 1 addieren)
+\end{itemize}
+\item Ganzzahlarithmetik\begin{itemize}
+\item Schiebe Operatoren(shifts): \begin{itemize}
+\item \ensuremath{<< \text{ Linksshift, } >> \text{ Rechtsshift}}
+\item Linksshift ziehen immer einen "0" nach, Rechtsshift auf unsinged Größen ebenfalls
+\item Rechtsshift auf auf singed Größen ziehen das Vorzeichenbit nach
+\item Multiplikation bzw. Division durch 2er Potenzen (bei Laufzeitkritischen Anwendungen)
+\end{itemize}
+\end{itemize}
+\item Fixed Point
+\subitem PRO: Rechnung schnell
+\subitem CONTRA: Rundungsfehler
+\item Floating Point (\ensuremath{Gz:=(<Vorzeichen>)<Mantisse>*Basis^{<Vorzeichen>Exponent}})
+\subitem Eine Gleitkommazahl heißt normiert,wenn die Mantisse \ensuremath{<1} und die erste Nachkommastelle ungleich Null ist
+\end{itemize}
+\section{Aussagenlogik}
+\begin{itemize}
+\item Eine Aussage ist ein Objekt, dem sich eindeutig ein Wahrheitswert (true,T)/(false,F) zuordnen lässt
+\item Operatoren\begin{itemize}
+\item Konjunktion \ensuremath{\land}
+\subitem Gesamtaussage ist wahr, wenn A und B wahr sind
+\item Disjunktion \ensuremath{\lor}
+\subitem Gesamtaussage ist wahr, wenn mindestens eine Aussage wahr ist
+\item Negation \ensuremath{\lnot}
+\subitem Ergebnis falsch, wenn A wahr und umgekehrt
+\item Implikation \ensuremath{\implies}
+\subitem Ergebnis whar, wenn entweder A falsch oder A und B wahr
+\item Äquivalenz \ensuremath{\iff}
+\subitem Ergebnis wahr, wenn entweder A und B Falsch oder A und B wahr
+\item Exklusives oder \ensuremath{xor}
+\subitem Ergebnis war, wenn A und B ungleich
+\item negiertes oder \ensuremath{nor}
+\subitem Ergebnis wahr, wenn A und B unwahr
+\item negiertes und \ensuremath{nand}
+\subitem Ergebnis wahr, wenn A oder B unwahr
+\end{itemize}
+\item Eine Formel ist erfüllbar, wenn mindestens eine Belegung gibt, deren Auswertung den Wert wahr liefert
+\item Eine Formel heißt Tautologie, wenn jeder Belegung den Wert wahr liefert
+\item Eine Formel heißt unerfüllbar (Kontradiktion) wenn es keine Belegung gibt, die die Formel erfüllt
+\item Zwei Formeln heißen äquivalent(\ensuremath{\tilde{=}}) wenn jede Belegung der Formlen zum gleichen Wert führt
+\item Äquivalenzen:\begin{itemize}
+\item Kommutativität
+\subitem \ensuremath{F_1\land F_2\tilde{=}F_2\land F_1} oder \ensuremath{F_2\land F_1\tilde{=}F_1\land F_2}
+\item Assoziativität
+\subitem \ensuremath{(F_1\land F_2)\land F_3 \tilde{=}F_1\land (F_2\land F_3)} oder \ensuremath{(F_1\lor F_2)\lor F_3 \lor{=}F_1\lor (F_2\lor F_3)}
+\item Distributivität
+\subitem \ensuremath{(F_1\land F_2)\lor F_3 \tilde{=}(F_1\lor F_3)\land(F_2\lor F_3) } oder \ensuremath{(F_1\lor F_2)\land F_3 \tilde{=}(F_1\land F_3)\lor(F_2\land F_3) }
+\item Idempotenz
+\subitem \ensuremath{F_1\land F_1\tilde{=}F_1} oder \ensuremath{F_1\lor F_1\tilde{=}F_1}
+\item De Morgan'sche Regel
+\subitem \ensuremath{\lnot (F_1\land F_2)\tilde{=}\lnot F_1\lor \lnot F_2} oder \ensuremath{\lnot\lnot (F_1\lor F_2)\tilde{=}\lnot F_1\land \lnot F_2}
+\item Implitaktionsregel
+\subitem \ensuremath{F_1\iff F_2\tilde{=}\not F_1\lor F_2}
+\end{itemize}
+\item Konjunktive Normalform
+\subitem Eine Formel F ist in konjunktiver Normalform (KNF) , wenn sie eine Konjunktion von Disjunktionen von Literalen ist
+\subitem Ein Literal ist dabei eine atomare Formel oder die Negation eine atomaren Formel (positives bzw. negatives Literal)
+\subitem \ensuremath{F=\land^k_{i=1}(\lor^{mk}_{j=1}L_ij)}
+\item Disjunktive Normalform
+\subitem Eine Formel F ist in disjunktiver Normalform (DNF), wenn sie eine Disjunktion von Konjunktionen von Literalen ist
+\subitem \ensuremath{F=\lor^k_{i=1}(\land^{mk}_{j=1}L_ij)}
+\item Für jeder Formel F gilt:
+\subitem zu F gibt es eine äquivalente Formel in konjunktiver Normalform und eine äquivalente in Disjunktiver Normalform
+\item deMorgan'sche Verknüpfungsbase n\ensuremath{\{\lor,\lnot\}};\ensuremath{\{\land,\lnot\}}
+\item Boole'sche Verknopfungsbasis \ensuremath{\{\land,\lor,\lnot\}}
+\item Frege-Basis \ensuremath{\{\lnot, \iff\}}
+\item nand-Basis \ensuremath{\{nand\}}
+\item nor-basis \ensuremath{\{nor\}}
+\end{itemize}
+\section{Prädikatenlogik}
+\begin{itemize}
+\item Sei \ensuremath{M} eine menge (Gegenstandsbereich, INdividuenbereich). Dann heißst einen Abblunding \ensuremath{M^n\leftarrow \{wahr,falsch\}} ein n-stelliges Prädikat über der Menge M
+\item Logische Operatoren\begin{itemize}
+\item Konjunktion \ensuremath{\land}
+\subitem Gesamtaussage ist wahr, wenn A und B wahr sind
+\item Disjunktion \ensuremath{\lor}
+\subitem Gesamtaussage ist wahr, wenn mindestens eine Aussage wahr ist
+\item Negation \ensuremath{\lnot}
+\subitem Ergebnis falsch, wenn A wahr und umgekehrt
+\item Implikation \ensuremath{\implies}
+\subitem Ergebnis wahr, wenn entweder A falsch oder A und B wahr
+\item Äquivalenz \ensuremath{\iff}
+\subitem Ergebnis wahr, wenn entweder A und B Falsch oder A und B wahr
+\end{itemize}
+\item Quantoren:
+\subitem \ensuremath{\forall} heißt Allquantor (für alle)
+\subitem \ensuremath{\exists} heißt Existenzquantor (existiert)
+\item Variablen, die an Quantoren gebunden sind, heißen gebundene Variablen, alle anderen heißen freie Variablen
+\item Eine Formel ohne konstante Prädikate, die für jede Wahl der variablen Prädikate und dann fpr jede mögliche Wahl der Individuenvariablen immer den Wert T ergibt, heißt Gesetz der Prädikatenlogik
+\end{itemize}
+\section{Zustandsautomaten}
+\begin{itemize}
+\item Mealy-Automat\begin{itemize}
+\item Ein Mealy-Automat ist durch \ensuremath{(Z,z_0,E,A,T)} gegeben
+\subitem \ensuremath{Z} ist eine endliche nichtleere Menge von Zuständen
+\subitem \ensuremath{z_0, z_0\in Z} ist der Anfangszustand
+\subitem \ensuremath{E} ist die endliche Menge der möglichen Eingaben
+\subitem \ensuremath{A} ist die endliche Menge der möglichen Ausgaben
+\subitem \ensuremath{T} ist die Menge der Transitionen(Zustandsübergänge)
+\item Jeder Transition \ensuremath{t\in T} ordnen einem Ausgangszustand \ensuremath{z_a\in Z} und einer Eingabe \ensuremath{e\in E} einen Folgezustand \ensuremath{z_f \in Z} und einen Ausgabe \ensuremath{a\in A} zu:\ensuremath{(z_a,e)\to (z_f,a)}
+\end{itemize}
+\item Graphische Darstellung:\begin{itemize}
+\item Jedem Zustand wird ein Knoten (gezeichnet als Kreis) zugeordnet.
+\item jeder Knoten wird mit dem Namen des zugehörigen Zustands beschriftet
+\item jede Transition wird einen Gerichtete kante (gezeichnet als Pfeil) von Zustand A nach zustand F zugeordnet
+\item Jeder Transition wird mit ihrer Eingabe e und Ausgabe a beschriftet
+\end{itemize}
+\end{itemize}
+\section{Modularisierung}
+\begin{itemize}
+\item Zerlegung in unabhängig voneinander zu erstellende SW-Teile (Module)
+\item Module sind getrennt voneinander übersetzbar
+\item Grundlage der Zerlegung ist eine vor der Codierung definierte SW Architektur
+\item Die Gesamtfunktion wird durch das "Zusammenspiel" der einzelnen Module realisiert
+\item Elemente eines Moduls:
+\subitem Konstanten, Variablen, Funktionen und Prozeduren werden in anderen Modulen verwendet
+\item Prinzipien:
+\subitem per \#define definierte Konstanten/Makros werden in anderen Modulen verwendet
+\item Realisierung in C:\begin{itemize}
+\item per \#define definierte Größen werden in einem Headerfile (.h) definiert, dieses diese werden, wo benötigt, eingebunden(\#include)
+\item Eine Konstante(const) oder Variable wird in einer Datei(.c) global definiert. Über eine externe Deklaration in einem Headerfile kann diese in anderen Modulen bekanntgemacht werden
+\subitem Selbiges gilt auch für Funktionen/Prozeduren
+\end{itemize}
+\item Globale Namen müssen eindeutig sein
+\item Ein Modul muss das Hauptprogramm enthalten
+\item Verwendung von Funktionen und Prozeduren modulübergreifend ist OK
+\item globale Variablen sind zu vermeiden(Informationen möglichst über Schnittstelle austauschen)
+\end{itemize}
+\newpage
+\section{Prozessmodelle}
+\begin{itemize}
+\item Phasenmodelle:\begin{itemize}
+\item Wasserfall-Modell
+\item Prototyping, evolutionäre Entwicklung
+\item Formale Entwicklung
+\item Wiederverwendungsorienttierete Entwicklung (opportunistisch/strategisch)
+\item Prozesswiederholende Modelle (inkrement/agile)
+\item Modellbasierte Entwicklung
+\item V-Modell
+
+\end{itemize}
+\item Wasserfall-Modell:\begin{itemize}
+\item Strikte Reihenfolge von Projektphasen
+\item Korrekturzyklen werde nur auf die vorangehende Phase beschränkt
+\item Vollständiges Ausführen einer Phase, Dokumentation als Abschluss
+\item Nachfolgephase beginnt erst nach vollständigem Abschluss einer Phase
+\item Auftraggeber und Anwender nur in der Phasenplanung und bei der Abnahme beteiligt
+\item Vorteile:
+\subitem Einfaches und klares Vorgehen
+\subitem Relativ einfach umzusetzen (Planung/Steuerung)
+\subitem Erzwingt eine gewisse Disziplin bei den Entwicklern
+\item Nachteile:
+\subitem Entspricht nicht der Realität
+\subitem Phasen können sich gegenseitig bedingen
+\subitem schwache Einbindung des Auftraggebers, bzw. der Anwenders
+\subitem Spätes Erkenne von Risiken, die sich aus der Implementierung ergeben
+\subitem Spätes Erkennen von Fehler aus den frühen Phasen, die erst in späteren Phasen erkennbar werden
+\subitem Dokumentation bekommt einen manchmal zu hohen Stellenwert
+\subitem Zeitverzug aus frühen Phasen schlägt voll durch auf spätere Phasen
+\subitem Im Extremfall ist das Produkt nicht brauchbar, die Entwicklung muss neu von vorne begonnen werden
+\subitem Säte Änderung und Fehlerbehebung im Code führen zu veralteter Dokumentation
+\end{itemize}\newpage
+\item V-Modell:\begin{itemize}
+\item Verbessertes Wasserfallmodell
+\subitem ergänzt um QS in allen Phasen, standardisiert
+\item Ziel: Entwurfsfehler frühzeitig zu erkennen
+\item Aber Nachteile des Wasserfallmodels bleiben erhalten:
+\subitem starre Reihenfolge der Phasen, Ergebnis in einem Durchlauf entwickelt
+\end{itemize}
+\item V-Modell-XT:\begin{itemize}
+\item Verbesserung der Unterstützung von Anpassbarkeit, Anwendbarkeit, Skalierbarkeit und Änder- und Erweiterbarkeit des V-Modells
+\item Berücksichtigung des neusten stand der Technologie und Anpassung an aktuelle Vorschriften und Normen
+\item Erweiterung des Anwendungsbereiches auf die Betrachtung des gesamten Systemlebenszyklus, im Rahmen von Entwicklungsprojekten
+\item einführen eines organisationsspezifischen Vierbesserungsprozesses für Vorgehensmodelle
+\end{itemize}
+\end{itemize}
+
+\end{document}

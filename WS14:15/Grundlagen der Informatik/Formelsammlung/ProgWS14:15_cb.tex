@@ -1,0 +1,425 @@
+
+\documentclass[10pt,a5paper]{article}
+\usepackage[latin9]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=0.05cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+\author{Christian Böhm}
+\usepackage{color}
+\definecolor{grey}{RGB}{211,211,211}
+\newcommand{\cbg}[1]{\colorbox{grey}{#1}}
+
+
+\begin{document}
+\section{Grundlagen}
+\subsection{Eigenschaften}
+ fest definierten und maschinell überprüfbaren Syntax (Struktur); eindeutige Semantik\subitem kein Interpretationsspielraum
+\subsection{Compiler} Übersetzen eines Programms in Maschinensprache:
+\begin{enumerate}
+\item Scanner/Parser: feststellen der syntaktischen Korrektheit
+\item Codegenerator: Erzeugen des Maschinencodes ggf. Optimierung
+\end{enumerate} 
+\subsection{Interpreter}
+Alternative zum Compiler
+\begin{itemize}
+\item QT wird bei jeder Programmausführung gelesen
+\item Interpretiert Computerprogramm (Pro Befehl eine Befehlsfolge) schrittweise
+\end{itemize}
+\subsection{Linker}
+\begin{itemize}
+\item Teil der Compilers
+\item Baut Programm aus verschiedenen Teilen zusammen
+\item Ergänzt die vom Compiler erzeugen Maschinencodes um vordefinierte Bibliotheken
+\item ermöglicht getrennte und verteilte Entwicklung
+\end{itemize}
+\subsection{Debugger}
+Werkzeug zur Analyse und Behebung von Fehlern
+\newpage \section{C}
+\subsection{Geschichte}
+\begin{itemize}
+\item 1971-1973 von Dennis Ritchie in den Bell Laboratories fÃŒr die Programmierung des damals neuen UNIXBetriebssystems entwickelt.
+\item Basis: Programmiersprache B von Ken Thompson in den Jahren 1969/70 geschrieben.
+\item B wiederum geht auf die von Martin Richards Mitte der 1960er-Jahre entwickelte Programmiersprache BCPL zurÃŒck. 
+\item 1973 erster Unix-Kernel (Betriebbsystem) in C geschrieben 1978 veröffentlichen Brian W. Kernighan und Dennis Ritchie die erste Auflage von "The C Programming Language" deutsch: Programmieren in C).Die darin beschriebene Fassung von C, die nach den Buchautoren "K\&R C" genannt wird, wird die erste  informelle C Referenz.
+
+\item C verbreitete sich rasch und wird laufend weiterentwickelt:
+ \begin{itemize}
+\item Normierung durch ANSI 1989 (ANSI X3.159-1989 Programming Language C)
+\item 1990 entsprechende ISO Norm C90 (mit kleinen Änderungen als C90
+\item 1995 ISO Norm (C95) und 1999 ISO/IEC 9899 (C99).
+
+\end{itemize}
+\end{itemize}
+\section{Programmiersprache C}
+\begin{itemize}
+\item Haupteinsatzgebiete: \begin{itemize}
+\item Systemprogrammierung
+\item Betriebssysteme (Hardwarenahe Programmierung zB Treibe)
+\item Eingebettete Systeme
+\item hochperformante Programmteile oder Applikationen
+\end{itemize}
+\item Basis/Grundlage vieler Andere Programmiersprachen
+\end{itemize}
+\textbf{Programmkomponenten}
+
+\begin{itemize}
+\item Grundstruktur eines C Programms
+\item Variabeln
+\item Konstanten
+\item Datentypen
+\end{itemize}
+
+\newpage 
+\subsection{Grundstruktur eines C-Programms}
+ \begin{itemize}
+ \item Anweisungen in Einzelschritten (max. eine Anweisung pro Zeile)
+ \item Anweisung durch Semikolon abgeschlossen
+ \item ZusammengehÃ¶rende Anweisungen werden durch \{\dots\} zusammengefasst
+ \item Textkonstanten werden durch "\dots" begrenzt
+ \item Kommentare werden durch /*\dots*/ begrenzt bzw. //\dots bis Zeilenende
+ \item mit \cbg{getchar();} wird auf Tastendruck gewartet, WICHTIG: Eingabepuffer mit \cbg{fflush(stdin);} leeren
+ \end{itemize}
+\subsubsection{Main Funktion}
+\begin{itemize}
+\item Bestandteil von jedem C Programm
+\item Start bzw. Endpunkt vom Hauptprogramm
+\item mit "\{\dots\} " abgegrenzt
+\item kein komplettes Programm
+\end{itemize}
+\subsubsection{Präprozessoranweisungen }
+\begin{itemize}
+\item werden mit \# eingeleitet
+\end{itemize}
+\subsubsection{Variablen}
+\begin{itemize}
+\item Identifikatoren\begin{itemize}
+\item nur Buchstaben, Ziffern und \_ 
+\item erstes Zeichen darf keine Ziffer
+\item Groß- und Kleinschreibung wird unterschieden
+\item C-Keywords dÃŒrfen nicht verwendet werden
+\item SelbsterklÃ€rend
+\item Variablen im CamelCase oder mit underscore
+\item Temporaries dem Typen angepasst
+\item Englische Namen
+\end{itemize}
+\item Typisierung \begin{itemize}
+\item Typ gibt den Speicher an
+\item Typen sind vordefiniert
+\item Typen können in Programm definiert werden
+\end{itemize}
+\item Deklaration: typ variabelname; \begin{itemize}
+\item fast überall definierbar
+\item legt Variabel an und macht sie Bekannt
+\item nach Deklaration ist Var in Block (\{\dots\}) bekannt
+\end{itemize}
+\item sind immer zu initialisieren
+\end{itemize}
+\subsubsection{Konstanten}
+\begin{itemize}
+\item Literalkonstanten \begin{itemize}
+\item dezimale Zahl (1,2,3)
+\item hexadezimale Zahl, PrÃ€fix 0x (0x1,0x2,0x3)
+\item oktale Zahl, PrÃ€fix 0 (010)
+\item Gleitkomma (10.5,3.14)
+\end{itemize}
+\item Konstanten \begin{itemize}
+\item Variablen auch als Konstanten
+\item mit \cbg{const} initialisiert
+\item nicht zu Überschreiben, werden im Speicher abgelegt
+\item auch als Präprozessor definierbar \cbg{\#define KONSTANTENAME Ausdruck} wird dann Textuell ersetzt (keine Speicherung im Programm)
+
+\end{itemize}
+\end{itemize}
+\subsubsection{Datentypen}
+\begin{tabular}{|c|c|c|c|}
+\hline \rule[-2ex]{0pt}{5.5ex} Datentyp & Keyword & Größe in Bytes & Wertebereich \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} Zeichen & char & 1 & -128 bis 127 \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} ganze Zahl(kurz) & short (short int) & 2 & -32768 bis 32767 \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} ganze Zahl & int & 4(meist) & -2147483648 bis 2147483647 \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} Ganze Zahl lang & long (long int) & 4 & -2147483648 bis 2147483647 \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} ohne Vorzeichen & unsinged char & 1 & 0 bis 255 \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} ohne Vorzeichen & unsinged short & 2 & 0 bis 65535 \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} ohne Vorzeichen & unsinged int & 4(Meist) & 0 bis 4294967295  \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} ohne Vorzeichen & unsinged long & 4 & 0 bis 4294967295  \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} einfache Gleitkomma & float & 4 & Genauigkeit 7 Dezimale  \\ 
+\hline \rule[-2ex]{0pt}{5.5ex} doppelte Gleitkomma & double & 8 & Genauigkeit 19 Dezimale  \\
+\hline 
+\end{tabular}
+\textbf{Typ-KompatibilitÃ€t}
+\begin{itemize}
+\item Standardtypen sind zueinander Kompatibel, können mit Operationen verknüpft werden (kann Nebeneffekte haben)
+\item char hat einen "Doppelrolle" sowohl Zeichen als auch Zahl
+\item Fehlerquellen: \begin{itemize}
+\item Abschneiden des Nachkommateils
+\item Abscheiden der hÃ¶herwertigen Bits oder Rundungsfehler
+\item Verlust des Vorzeichenes, Anderung des Wertes
+\end{itemize}
+\end{itemize}
+ \newpage
+\subsubsection{Ein/Ausgabe}
+\textbf{Ausgabe:} \cbg{printf(\ensuremath{\text{"}< \%[Flag][Breite][\text{.PrÃ€zision}][\text{PrÃ€fix}]Typ>\text{"}},\ensuremath{<auszugebende Daten>} );}
+\begin{itemize}
+\item Steuerzeichen:\begin{itemize}
+ \item \textbackslash a: BEL - akustisches Warnsignal
+ \item \textbackslash b: BS Backspace -Cursor um einen Position nach links
+ \item \textbackslash f: FF formfeed - Seitenvorschub
+ \item \textbackslash n: NL Newline- der Cursor geht zur nÃ€chsten Zeile
+ \item \textbackslash r: CR Carriage return - der Cursor springt zum Anfang der Zeile
+ \item \textbackslash t: HT Horiziontal tab - Zeilenvorschub zur nÃ€chte horizontalen Tabulatorposition
+ \item \textbackslash v: VT vertical tab - Zeilenvorschub zur nÃ€chte vertikalen Tabulatorposition
+ \item \textbackslash ": " wird ausgegeben
+ \item \textbackslash ': ' wird ausgegeben
+ \item \textbackslash ?: ? wird ausgegeben
+ \item \textbackslash \textbackslash: \textbackslash wird ausgegeben
+ \item \textbackslash 0: Endmakierung eines Strings
+ \item \textbackslash nnn: Ausgabe eines Oktalwerts
+ \item \textbackslash xhh: Augabe eines Hexadezimalwerts
+\end{itemize}
+\item Typ: \begin{itemize}
+\item \%d \%i Dezimalzahl mit Vorzeichen
+\item \%o Oktalzahl
+\item \%x \%X Hexadezimalzahl (klein/groß)
+\item \%u Dezimalzahl ohne Vorzeichen
+\item \%c Buchstabe(Charakter)
+\item \%s Zeichenkette(String)
+\item \%f Gleitkommazahl
+\item \%e \%E Gleitkommazahl (Exponentialdarstellung)
+\item \%g \%G Double (Exponentialdarstellung)
+\item \%p Pointer
+\item \%n Anzahl auszugebender Zeichen
+\item \%a wie \%f (ab C99)
+\end{itemize}
+\item Flagangabe, optionales "-"-Zeichen legt linksbündige Ausgabe fest "+"-Zeichen gibt Plus bei positiven zahlen aus
+\item Breite, die Zahl Breite legt die minimales Breites des Ausgabefeldes fest
+\item Präzision, legt die anzahl an Nachkommastellen fest
+\end{itemize}
+\textbf{Eingabe:} \cbg{scanf(\ensuremath{\text{"}< \%[Flag][Breite][.\text{PrÃ€zision}][\text{PrÃ€fix}]Typ>\text{"},<Adresse>});}
+\subsubsection{Operatoren}
+\begin{itemize}
+\item Verknüpfung/Manipulation von Daten
+\item Verwendbar bei Variablen Konstante und Ausdrücken
+\item Allgemeine Operatoren:\begin{itemize}
+\item = Zuweisungsoperator
+\item * Multiplikation, / Division, + Addition, - Subtraktion
+\item \& Adressoperator
+\item \% Modulo (Restbildung)
+\item == Gleichheit 
+\item != Ungleichheit
+\item   \ensuremath{<,<=,>=,>} Vergleich auf kleiner/größer
+\item  \&\& logisches und, \ensuremath{\vert} logisches oder, ! Negation 
+\end{itemize}
+\item Bitweise Operatoren: \begin{itemize}
+\item \& und, \ensuremath{\land}  oder,  \ensuremath{\sim}  Negation
+\item ? Bedingter Ausdruck \subitem \ensuremath{<boolscher Ausdruck>}?TrueStatement:Falsestatement\item Bitweise Operatoren verknÃŒpfen die einzelnen Bits 
+
+\end{itemize}
+\item Schiebe Operatoren(shifts): \begin{itemize}
+\item \ensuremath{<< \text{ Linksshift, } >> \text{ Rechtsshift}}
+\item Linksshift ziehen immer einen "0" nach, Rechtsshift auf unsinged Größen ebenfalls
+\item Rechtsshift auf auf singed Größen ziehen das Vorzeichenbit nach
+\item Multiplikation bzw. Division durch 2er Potenzen (bei Laufzeitkritischen Anwendungen)
+\end{itemize}
+\item einstellige Operatoren:\begin{itemize}
+\item \ensuremath{-} Negation
+\item \ensuremath{++} Inkrement \ensuremath{i++\widehat{=} i=i+1}
+\item \ensuremath{--} Dekrement \ensuremath{i--\widehat{=} i=i-1}
+\item \ensuremath{+=n} Addition einer Zahl n \ensuremath{x+=b\widehat{=} x=x+b} (analog \ensuremath{*=;/=;\% =})
+\end{itemize}
+\end{itemize}
+\subsubsection{Kontrollstrukturen}
+\begin{itemize}
+\item if \dots else \begin{itemize}
+\item Syntax: if (<Bedingung>) \{\ensuremath{<TrueStatement>}\} else \{\ensuremath{<Falsestatement>}\}
+\item Anwendung: Vergleiche
+\end{itemize}
+\item switch \dots case \dots\begin{itemize}
+\item Syntax: switch(Wert) \{case Wert\textsuperscript{i}: \ensuremath{<Anweisungsblock>}; break; default:\ensuremath{ <Anweisungsblock>} \} (case Wert\textsuperscript{i} müssen Konstanten sein)
+\item Anwendung: Überschaubare Anzahl diskreter Werte
+\end{itemize}
+\item while \dots\begin{itemize}
+\item Syntax: while(Bedingung) \{\ensuremath{<Anweisungsblock>}\}
+\item Ausführung nur wenn Bedingung wahr
+\end{itemize}
+\item do \dots while \dots\begin{itemize}
+\item Syntax: do \ensuremath{<Anweisungsblock>} while (Bedingung)
+\item Ausführung min einmal auch wenn Bedingung falsch (While schleife Bevorzugen)
+\end{itemize}
+\item for \dots\begin{itemize}
+\item Syntax: \subitem for\ensuremath{(<Start>}; \ensuremath{<Abbruchbedingung>}; \ensuremath{ <\text{Änderung}> )} \ensuremath{<Anweisungsblock>}
+\end{itemize}
+
+\item goto\begin{itemize}
+\item Syntax: goto Sprungmarke; (Sprungmarke Setzen\ensuremath{<Sprungmarke>:} )
+\item fÃŒhrt zu unÃŒbersichtlichem Code, verboten
+\end{itemize}
+\item break: Beendet Schleifenbearbeitung, Fortsetzung nach der Schleife
+\item continue: Beendet Aktuelle SchleifenausfÃŒhrung, es wird mit der AusfÃŒhrung der Bedingung fortgesetzt
+\item return: Ende einer Funktionsberechnung inkl. RÃŒckgabewert
+\item exit: beendet ProgrammausfÃŒhrung
+\end{itemize}
+\subsubsection{Arrays und Strings}
+\begin{itemize}
+\item Deklaration:
+\subitem\ensuremath{<typ>}varname[\ensuremath{<ganzzahliger Ausdruck>}];
+\item Globaler Zugriff:
+\subitem variabelname, Individueller Zugriff: varaibelname[\ensuremath{<ganzzahliger Ausdruck>}]
+\item erstes Element hat Index -1, letztes Element hat Index \subitem Anzahl der Vektorelemente -1
+\item Array = Array nicht mÃ¶glich
+\item automatische Ermittlung der Elemente: type varname[ ], Beachte:Strings werden immer durch Null-Bit beendet ("\textbackslash 0")
+\item zur Manipulation: \cbg{\#include\ensuremath{<string.h>}}\begin{itemize}
+\item scanf("\%s",\dots) Einlesen Zeichenkette
+\item printf("\%s",\dots) Ausgeben von Zeichenketten
+\item gets(\dots) Einlesen von Zeichenketten
+\item puts(\dots) Ausgeben von Zeichenketten
+\item \dots = getchar() Einlesen von Buchstaben
+\item char* strchr(str,Zeichen)  suchen nach "Zeichen" in "str" \subitem Null wenn nicht vorhanden, sonst Adresse des ersten Zeichens
+\item strcpy(zielstr, quellstr)  strlÃ€nge muss passen
+\item strncpy(char *dest, const char *src, size\textunderscore t n);
+\item strcat(zielstr, quellstr)  quell an zielstr anhÃ€nge strLÃ€nge von zielstr muss passen
+\item strncat(char *dest, const char *src, size\textunderscore t n )
+\item strcmp(str1,str2) vergleicht str1 mit str2 (alphabetisch) 0 wenn gleich; \ensuremath{<0} falls \ensuremath{str1<str2}; \ensuremath{>0} falls \ensuremath{str1>str2}
+\item strncmp(const char *s1, const char *s2, size\textunderscore t n) 
+\item int strcspn(str1,str2) Index des Ersten Zeiches von STR1, welches in Str2 vorkommt
+\item int strlen(str) LÃ€nge von str ohne Stringende
+\item char strstr(str1, str2): Festestellen wo str2 in str1 \subitem Ergebnis ist Zeiger auf den Teilstring in str1 falls str2 in str1 vorkommt sonst auf 0
+\end{itemize}
+\item Mehrdimensionale Array:\begin{itemize}
+\item Deklaration:
+\subitem\ensuremath{<typ>}varname[\ensuremath{<Zeile>}][\ensuremath{<Spalte>}]=\{\dots \}\dots \{\dots \}   (Zeile mit "\{\}" abgetrennt Splaten mit ",")
+\item Zugrif auf die Elemente: varname[Zeile][Spalte]
+\end{itemize}
+\end{itemize}
+\subsubsection{Benutzerdefinierte Datentypen}
+\begin{itemize}
+\item typedef Typdefinition Neuer\textunderscore Typ; (Standarttypen neu Definieren)
+\item enum {\dots}; (Durchnummerieren der Inhalte neue Nummerierung mit "inhalt=nummer")
+\item structs\begin{itemize}
+\item Zusammenbau eines neuen Typs aus bestehenden Typen
+\item typedef struct struct\textunderscore name {typ komponentename} typname;
+\item Deklaration typname varname;, Komponenten Zugriff varname.komponentename
+\end{itemize}
+\item union \begin{itemize}
+\item typedef union n\textunderscore name \{typ varname\} n; n\textunderscore i
+\item die Komponenten belegen den selber Speicherplatz und haben den Gleichen wert, dieser wird nur anders interpretiert
+\end{itemize}
+\end{itemize}
+\subsubsection{Präprozessor}
+\begin{itemize}
+\item Datenverarbeitung rein Textuell, keine Beachtung des Syntax
+\item Direktiven \begin{itemize}
+\item \#include\ensuremath{<datei>} sucht nach datei im system-verzeichnissen; \#include"\ensuremath{datei}" sucht in den Quellverzeichnissen
+\item \#define TEXT Ersatztext ersetzt Text durch Ersatztext
+\subitem \#define Makroname(Parameter\textunderscore i) Ersatztext (Parameter\textunderscore i wird durchen den I-ten parameter ersetzt)
+\item \#if AUSDRUCK (Wenn Ausdruck True wird Code übernommen)
+\item \#ifdef Konstante (Ausdruck wird nur übernommen wenn Konstante Definiert)
+\item \#ifndef Konstante (Ausdruck wird nur übernommen wenn konstante nicht definiert)
+\item \#else (Alternative zu vorhergehender \#if)
+\item \#endif (schließt \#if)
+\end{itemize}
+\item symbolische Konstante\begin{itemize}
+\item \textunderscore\textunderscore LINE\textunderscore\textunderscore
+\item \textunderscore\textunderscore FILE\textunderscore\textunderscore
+\item \textunderscore\textunderscore DATE\textunderscore\textunderscore
+\item \textunderscore\textunderscore TIME\textunderscore\textunderscore
+\end{itemize}
+\end{itemize}
+\subsubsection{Pointer}
+\begin{itemize}
+\item Ein Pointer zeigt auf eine Stelle im Speicher (Physikalische Speicheradresse) und kann eine Konstante(selten außer Null-Pointer) oder eine Variabel sein und ist typisiert
+\item Eine Pointervariabel beinhaltet die Speicheradresse und steht selbst im Speicher
+\item Pointer können auch auf Dateien oder Funktionen zeigen und werden als Referenz bezeichnet
+\item Verwendung:\begin{itemize}
+\item Hardwarenahe Programierung (Ansprechen von Registern, Ports, Interrupttabellen)
+\item Resultat/Parameter Übergabe
+\item dynamische Datenstrukturen (Listen/Bäume)
+\end{itemize}
+\item Deklaration: typ *Pointername; (* drückt aus das es ein Pointer ist)
+\item typ p;(p ist ein typ) - typ *p;(p ist ein pointer auf einen typ) - typ **p;(p ist ein pointer auf einen pointer auf einen typ)
+\item Pointer als Ergebnis einer Funktion: typ *f(typ1 p1,\dots)
+\item Pointer als Parameter einer Funktion: ergtyo f(typ *p,\dots)
+\item Pointer in funktionen als Parameter/Ergebnis erspart das Kopieren großer Datenmengen, ohne Alternative bei Dynamischen Strukturen
+\item Dereferenzieren:\begin{itemize}
+\item zugriff auf den speicher auf den der Pointer zeigt
+\item liefert lesend einen wert von typ auf den der pointer zeigt
+\item liefert schreiben eine Speicherstelle vom Typ auf der der Pointer zeigt
+\item dieser wert btw die speicherstelle können in operationen oder als parameter oder als ergebnis einer funktion verarbeited werden
+\item Dereferenzieren: *pointer wird in einem ausdruck verwendet (muss mit der typ der pointer kompatibel sein und muss immer auf eine bestimmte Speicheradresse zeigen)
+\end{itemize}
+\item Struckts\begin{itemize}
+\item typedef struct{\dots} struct\textunderscore name; struct\textunderscore name *spointer; struct\textunderscore name s;spointer= \&s
+\item Zugriff:\subitem (*spointer).\dots = inhalt\subitem spointer\ensuremath{->}\dots = inhalt
+\end{itemize}
+\item Arrays\begin{itemize}
+\item typ typFeld[var]; typ *typPointer=typFeld (typPointer zeigt auf das Feld mit dem Index 0, typPointer+i zeigt auf das feld mit dem index i)
+\item Dereferenzieren: *(typPointer+i)=var; oder typPointer[i]=var;(genau wie bei arrays)
+\item array kann ohne arrayindex durchlaufen werden
+\end{itemize}
+\item immer vorsicht bei Pointerarithmetik
+\item man kann pointer wie normale variablen casten
+\item Casten muss immer mit Vorsicht durchgeführt werden
+\end{itemize}
+\subsubsection{Dynamische Speicherverwaltung}
+\begin{itemize}
+\item Arbeitsspeicher\subitem Stack(von dem PC verwaltet beinhaltet, Variablen/Parameter)\subitem Heap(wird durch den Entwickler verwaltet beinhaltet dynamische Datenstrukturen)
+\item Bedarfsgerechte Nutzung des vorhanden Speichers, freigeben von nicht mehr benötigtem Speicher, verwendung für dynamische Datenstrukturen(variable Größe)\subitem\ensuremath{\Leftarrow} Effiziente Nutzung, Verwaltung liegt beim Entwickler
+\item Heap starte bei der 1. Adresse, Stack startet bei der Letzten;
+\item Speicherplatzanforderung:
+\subitem malloc()\begin{itemize}
+\item void *p; p=malloc(Anzahl\textunderscore Bytes);, liefert einen Pointer auf Speicherbereich der benötigten Größe, oder Null falls Speicherbereich der benötigten Größe nicht mehr vorhanden
+\item Anzahl der Byte mittels sizeof(typ) ermitteln
+
+\end{itemize}
+\item free()\begin{itemize}
+\item free(pointer); gibt den mit malloc reservierten speicherplatz frei(darf nicht mehrfach auf den selber verwendet werden)
+\item freigegebene pointer dürfen nicht mehr dereferenziert werden
+\item die Speicherplatzfreigabe sollte mit dem gleichem pointer wie die Anforderung erfolgen
+\item nach der verwendung immer freigeben
+\end{itemize}
+\item Memory Leaks:\begin{itemize}
+\item im Heap reservierter Speicherbereich  jedoch nicht mehr zugänglich (über Pointer erreichbar)
+\item Probleme:
+\subitem führt zu Speichermangel,
+\subitem möglicherweise abnormale Programmbeendigung
+\item Vermeidung
+\subitem sorgfältige Programmierung Dynamischer Speicherverwaltung
+\end{itemize}
+\end{itemize}
+\subsubsection{Funktionen}
+\begin{itemize}
+\item Deklaration: Ergenistyp funktionsname (Parameterleiste) {funktionsrumpf}
+\item wenn keine ausgabe "void" als ergebnisstyp, sonst "return ergebnis;"(kann auch mehrmals vorkommen)
+\item lokale Varaibeln, Konstante, Parameter sind nur innerhalb der Funktion bekannt, namensgleiche globale werden überschattet
+\item funktionen möglichst klein halten (100zeilen) sinnvolle ausgaben (Rückgabe fehlercode) keine globalen variabeln in funktionen
+\item übergabeprinzip: call by value beim aufruf werden die parameter durch kopieren ersetzt
+\item parameter werden im stack bereich übergeben, nach schließen der funktion wird dieser frei
+\item funktionen können auch rekursiv sein
+\item es wird immer ein wert zurückgegeben
+\item Rückgabe meherere Werte:\begin{itemize}
+\item Rückgabe eines Typs
+\item void functionname (typ *i){\dots return;} funktion schreibt direkt über die adressen in den speicher
+\item Per Referenz
+\end{itemize}
+\item Funktionspointer\begin{itemize}
+\item typ (*fPointer) (typ); zeigt auf einen funktion mit Returntyp typ und einem typ als Parameter
+\item wie bei herkömmlichen pointer dereferenziert
+\end{itemize}
+\end{itemize}
+\subsubsection{Dateien}
+\begin{itemize}
+\item Datentyp FILE ist in C vordefiniert
+\item Deklaration: FILE *datei;
+\subitem datei=fopen("c:\\dateiname.dateiendung","modus") \subitem modus: "r" Read "rb" ReadBinary "w" write "wb" write binary "a" Append "ab" append binary
+\subitem fscanf(datei,\ensuremath{\text{"}< \%[Flag][Breite][\text{.PrÃ€zision}][\text{PrÃ€fix}]Typ>\text{"}}, zeile);
+\item Binärer zugriff:\begin{itemize}
+\item Lesen fread:\subitem fread(Puffer\textunderscore Adresse, Puffer\textunderscore Größe, Anzahl\textunderscore Puffer, FILE *datei)
+\subitem Puffer\textunderscore Adresse=  Pointer auf dateibereich
+\subitem Puffer\textunderscore Größe = Anzahl Bytes des Datenbereichs (sizeof())
+\subitem Azahl\textunderscore Puffer = Anzahl der zu lesenden Records
+\subitem datei = dateipuffer
+\item schreiben fwrite(Puffer\textunderscore Adresse, Puffer\textunderscore Größe, Anzahl\textunderscore Puffer, FILE *datei)
+\end{itemize}
+\item fclose(File *datei); (nach zugriff immer schließen)
+\end{itemize}
+\end{document}

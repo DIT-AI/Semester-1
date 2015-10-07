@@ -1,0 +1,546 @@
+
+\documentclass[10pt,a5paper]{article}
+\usepackage[ascii]{inputenc}
+\usepackage{ngerman}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[left=1cm, right=1cm, top=1cm, bottom=1cm]{geometry}
+\author{Christian B"ohm}
+
+
+
+\newcommand{\sS}[1]{\textit{siehe Seite: \textbf{#1}}}
+\renewcommand{\d}[1]{\Delta #1}
+
+
+\begin{document}
+
+\section{Grundlagen}
+
+\newpage
+\section{Kinematik}
+\subsection{Eindimensionale Bewegungen}
+\subsubsection{Gleichf{"o}rmige Translation}
+\begin{eqnarray}
+v=\frac{s}{t}
+\end{eqnarray}
+Umrechnung von Geschwindigkeiten: \sS{69}\\
+Geschwindigkeiten in der Natur und Technik \sS{70}
+\subsubsection{Gleichm{"a}{\ss}ig beschleunigte Translation}
+\begin{eqnarray}
+a=\frac{\d{v}}{\d{t}}
+\end{eqnarray}
+Beschleunigungen in Natur und Technik: \sS{71}\\
+\textbf{Ohne Anfangsgeschwindigkeit}
+\begin{eqnarray}
+s=\frac{v_{end}*t}{2}\\
+a=\frac{a*t^2}{2}\\
+v=a*t\\
+\overline{v}=\frac{a*t}{2}=\frac{s}{t}
+\end{eqnarray}
+ \textbf{Mit Anfangsgeschwindigkeit}
+ \begin{eqnarray}
+ s=\frac{v_0+v_{end}}{2}*t\\
+ s=v_0*t+\frac{a*t^2}{2}\\
+ v=v_0+a*t\\
+ v=\sqrt{v_0^2+2as}\\
+ \overline{v}=\frac{v_o+v_{end}}{2}=v_0+\frac{a*t}{2}=\frac{s}{t}\\
+ \overline{v}=\frac{\d{s}}{\d{t}}=\frac{s_2-s_1}{t_2-t_1}\\
+ s=s_0+\frac{v_0+v_{end}}{2}*t=s_0+v_0*t+\frac{a*t^2}{2}
+ \end{eqnarray}
+ \newpage
+ \textbf{Ungleichm{"a}{\ss}ig beschleunigte Translation}
+ \begin{eqnarray}
+ v=\frac{ds}{dt}=\dot{s}\\
+ s=\int_{t_1}^{t_2}v dt\\
+ \overline{v}=\frac{s}{t}\\
+ \overline{v}=\frac{\d{s}}{\d{t}}=\frac{s_2-s_1}{t_2-t_1}\\
+ a=\frac{dv}{dt}=\ddot{s}\\
+ v=\int_{t_1}^{t_2}adt\\
+ \overline{a}=\frac{\d{v}}{\d{t}}=\frac{v_{end}-v_0}{t}\\
+ \overline{a}=\frac{\d{v}}{\d{t}}\frac{v_2-v_1}{t_2-t_1}
+ \end{eqnarray}
+ \subsubsection{Fall und Wurf}
+ \begin{eqnarray}
+ h=\frac{v*t}{2}=\frac{g*t^2}{2}\\
+ v=g*t=\sqrt{2*g*h}\\
+ \end{eqnarray}
+\textbf{Senkrechter Wurf:}
+\begin{eqnarray}
+h=\frac{v_0+v_{end}}{2}*t=v_0*t+\frac{g*t^2}{2}\\
+v=v_0+g*t=\sqrt{v_0^2+2g*h}\\
+h_{max}=\frac{v_0}{2*g}\\
+t_{max}=\frac{v_0}{g}
+\end{eqnarray}
+\subsubsection{Zusammengesetze Bewegung}
+\begin{eqnarray}
+v_R=\sqrt{v_1^2+v_2^2+2*v_1*v_2*\cos\gamma}
+\end{eqnarray}
+\newpage
+\subsection{Zweidimensionale Bewegungen}
+\subsubsection{Waagrechter Wurf}
+\begin{eqnarray}
+y=\frac{g}{2*v_0}*x^2\\
+\vec{r}=\vec{v_0}*t+\frac{\vec{g}*t^2}{2}\\
+\vec{v_B}=\vec{v_0}+\vec{g}*t\\
+\tan\gamma =\frac{g*t}{v_0}\\
+v_B=\sqrt{v_0^2+g^2*t^2}\\
+s=v_0*t=v_0\sqrt{\frac{2*h}{g}}\\
+h=\frac{g*t^2}{2}
+\end{eqnarray}
+\subsubsection{Schr{"a}ger Wurf}
+\begin{eqnarray}
+y=x*\tan\gamma - \frac{g}{2*v_0^2*\cos^2\gamma}*x^2\\
+\vec{v_x}=\vec{v_0}*\cos\gamma\\
+\vec{v_y}=\vec{v_0}*\sin\gamma-\vec{g}*t\\
+v_B=\sqrt{v_0^2-2*g*h}\\
+s=v_0*t*\sin\gamma-\frac{g*t^2}{2}\\
+t_{hmax}=\frac{v_0*\sin\gamma}{g}\\
+t_{sm}=2*t_{hmax}=2*=\frac{v_0*\sin\gamma}{g}\\
+h_{max}=\frac{v_0^2*\sin 2\gamma}{2*g}\\
+s_{max}=\frac{v_0^2*\sin\gamma*\cos\gamma}{g}\\
+\text{H{"o}henunterschied:}\hspace{9cm}\\
+\text{nach max: }\hspace{1.5cm} 
+h=h_{max}+\d{h};t_f=\sqrt{\frac{2*h}{g}};v_y=\sqrt{2*g*h}\\
+\text{vor max: } \hspace{0.25cm}h=v_0*t*\sin\gamma-\frac{g*t^2}{2}\Rightarrow 
+t;v_y=v_0*\sin\gamma-g*t
+\end{eqnarray}
+\newpage
+\subsection{Rotation:}
+\subsubsection{Grundlage}
+\begin{eqnarray}
+\phi=\frac{s}{r}\\
+T=\frac{1}{f}=\frac{1}{n}\\
+\phi=2\pi*N\\
+\omega=2\pi*f=\frac{2\pi}{T} 
+\end{eqnarray}
+{"U}bersicht Winkel Rad/Grad: \sS{85}
+\subsubsection{Gleichförmige Rotation}
+\begin{eqnarray}
+\omega=\frac{\phi}{t}
+\end{eqnarray}
+\subsubsection{Gleichm{"a}{\ss}ig beschleunigte Rotation}
+\begin{eqnarray}
+\alpha=\frac{\d{\omega}}{\d{t}}
+\end{eqnarray}
+\textbf{Ohne Anfangswinkelgeschwindigkeit}\\
+\begin{eqnarray}
+\phi=\frac{\omega*t}{2}=\frac{\alpha*t^2}{2}\\
+\omega=\alpha*t=\sqrt{2\alpha *\phi}\\
+\overline{\omega}=\frac{\alpha*t}{2}=\frac{\phi}{t}
+\end{eqnarray}
+\textbf{Mit Anfangswinkelgeschwindigkeit}\\
+\begin{eqnarray}
+\phi=\frac{\omega_0+\omega}{2}*t=\omega_0*t+\frac{\alpha *t^2}{2}\\
+\phi_{ges}=\phi_0+\frac{\omega_0+\omega}{2}*t=\phi_0+\omega_0*t+\frac{\alpha*t^2}{2}
+\end{eqnarray}\newpage
+\subsubsection{Gleichm{"a}{\ss}ig beschleunigte Rotation}
+\begin{eqnarray}
+\omega=\frac{d\phi}{dt}\\
+\phi=\int_{t_1}^{t_2}\omega dt\\
+\overline{\omega}=\frac{\phi}{t}=\frac{\phi_2-\phi_1}{t_2-t_1}=\frac{\d{\phi}}{\d{t}}\\
+\overline{n}=\overline{f}=\frac{\overline{\omega}}{2\pi}\\
+\alpha=\frac{d\omega}{dt}=\dot{\omega}=\ddot{\phi}\\
+\omega=\int_{t_1}^{t_2}\alpha dt\\
+\overline{\alpha}=\frac{\d{\omega}}{\d{t}}=\frac{\omega-\omega_0}{t}=\frac{\omega_2-\omega_1}{t_2-t_1}
+\end{eqnarray}
+\textbf{Bewegung auf der Kreisbahn}\\
+\begin{eqnarray}
+s_B=\phi*r\\
+v_B=\omega*r=d*\pi*f\\
+a_B=\alpha*r\\
+\vec{v_B}=\vec{\omega}\times\vec{r}\\
+\vec{a_B}=\vec{\alpha}\times\vec{r}\\
+a_r=\frac{v_B^2}{r}=\omega^2*r
+\end{eqnarray}\newpage
+\section{Dynamik}
+\subsection{Masse und Kraft}
+\subsubsection{Newton'sche Axiome}
+\sS{98}
+\subsubsection{Grundlagen}
+\begin{eqnarray}
+\vec{F}=\vec{a}*m\\
+F_G=m*g\\
+\end{eqnarray}
+Umrechnung in SI Fremde Krafteinheiten: \sS{100}\\
+\textbf{Dichte:}\\
+\begin{eqnarray}
+\rho=\frac{m}{V}\\
+\rho_m=\frac{\sum_{i=1}^{n}\rho_i*V_i}{\sum_{i=1}^{n}V_i}
+\end{eqnarray}
+\textbf{Federkraft}\\
+\begin{eqnarray}
+k=\frac{F}{s}\\
+F=-k*s\\
+\end{eqnarray}
+\textbf{Reibungskraft}\\
+\begin{eqnarray}
+F_R=\mu *F_N
+\end{eqnarray}
+\textbf{Tr{"a}gheit:}
+\begin{eqnarray}
+\vec{F_T}=-m*\vec{a}
+\end{eqnarray}
+\newpage
+\subsubsection{Spezialf{"a}lle}
+\vspace{5cm}
+\begin{eqnarray}
+\vec{F_{zH}}=\cos\gamma*F_z;\vec{F_{zV}=\sin\gamma*F_z}\\
+\vec{F_N}=F_g-\vec{F_zV};\vec{F_R}=\mu*\vec{F_n}
+\end{eqnarray}
+\vspace{5cm}
+\begin{eqnarray}
+\vec{F_H}=\cos{90^\circ-\gamma}; 
+\vec{F_n}=\cos\gamma*(F_g-\vec{F_{z\perp\gamma}})\\
+\text{Tendenz nach oben: } 
+\vec{F_{z\parallel\gamma}}=\vec{F_{R-H/G}}+\vec{F_H}\\
+\text{Tendenz nach unten: } \vec{F_{z\parallel\gamma}}=\vec{F_H}\\
+\text{Wenn }\vec{F_z}=\vec{F_{gk}}\\
+\text{Tendenz nach oben: } m_k=m*(\mu_{G/H}*\cos\gamma+\cos(90^\circ-\gamma))\\
+\text{Tendenz nach unten: } m_k=m*(\cos(90^\circ-\gamma)-\mu_{G/H}*\cos\gamma)
+\end{eqnarray}
+\newpage
+\subsection{Arbeit, Energie und Leistung}
+\subsubsection{Arbeit}
+Umrechnung in SI-fremde Einheiten: \sS{106}\\
+\begin{eqnarray}
+W=F*s\\
+W=F*s*\cos\gamma\\
+W=\vec{F}*\vec{s}\\
+W=\int_{s_1}^{s_2}F*\cos\gamma ds\\
+W=\int_{s_1}^{s_2}\vec{F}*d\vec{s}
+\end{eqnarray}
+\textbf{Hubarbeit}\\
+\begin{eqnarray}
+W_H=F_G*h=m*g*h
+\end{eqnarray}
+\textbf{Reibungsarbeit}\\
+\begin{eqnarray}
+W_R=F_R*s=\mu*F_N*s\\
+W=m*g*s+(\sin\gamma+\mu*\cos\gamma)
+\end{eqnarray}
+\textbf{Beschleunigungsarbeit}\\
+\begin{eqnarray}
+W_B=m*a*s=\frac{m*v^2}{2}\\
+W_B=m*a*s=\frac{m}{2}(v^2-v_0^2)
+\end{eqnarray}
+\textbf{Verformungsarbeit}
+\begin{eqnarray}
+W_F=\frac{k*s^2}{s}
+\end{eqnarray}
+\newpage
+\subsubsection{Energie}
+\textbf{Potentielle}\\
+\begin{eqnarray}
+E_p=F_G*h=m*g*h\\
+E_P=m*\int_{h_1}^{h_2}gdh
+\end{eqnarray}
+\textbf{Kinetische}\\
+\begin{eqnarray}
+E_k=\frac{m*v^2}{2}\\
+\d{E_k}=\frac{m}{2}(v_2^2-v_1^2)\\
+\end{eqnarray}
+\textbf{Energieerhaltung}
+\begin{eqnarray}
+E_{ges}=E_p+E_k+E_r=konstant
+\end{eqnarray}
+\subsubsection{Leistung}
+Umrechnung in SI-fremde Einheiten: \sS{114}\\
+\begin{eqnarray}
+\overline{P}=\frac{W}{t}\\
+P=\frac{dW}{dt}=\dot{W}\\
+P=F*v\\
+\end{eqnarray}
+\textbf{Wirkungsgrad}\\
+\begin{eqnarray}
+\eta=\frac{P_{ab}}{P_{zu}}=\frac{P_{zu}-P_{verlust}}{P_{zu}}=1-\frac{P_{verlust}}{P_{zu}}
+\end{eqnarray}
+\newpage
+\subsection{Impuls und Sto{\ss}}
+\subsubsection{Impuls}
+\begin{eqnarray}
+\vec{p}=m*\vec{v}
+\end{eqnarray}
+\subsubsection{Kraftsto{\ss}}
+\begin{eqnarray}
+\d{\vec{p}}=m*\d{\vec{v}}=\int_{t_1}^{t_2}\vec{F} dt\\
+\vec{F}=\frac{d\vec{p}}{t}=\frac{d(m*\vec{v})}{dt}=\dot{\vec{p}}\\
+\end{eqnarray}
+\subsubsection{Impulssatz}
+\begin{eqnarray}
+\vec{p_ges}=\sum_{i=1}^{n}\vec{p_i}=konstant
+\end{eqnarray}
+\subsubsection{Sto{\ss}}
+\textbf{Elastischer Sto{\ss}}\\
+\begin{eqnarray}
+v_1'=\frac{(m_1-m_2)*v_1+2*m_2*v_2}{m_1+m_2}\\
+v_2'=\frac{(m_2-m_1)*v_2+2*m_1*v_1}{m_1+m_2}
+\end{eqnarray}
+\textbf{Unelastischer Sto{\ss}}\\
+\begin{eqnarray}
+v=\frac{m_1*v_1+m_2*v_2}{m1+m2}\\
+W=E_1-E_2=\frac{m_1*m_2}{2*(m_1+m_2)(v_1-v_2)^2}
+\end{eqnarray}
+\textbf{Teilelastischer Sto{\ss}}\\
+\begin{eqnarray}
+\d{E}=\frac{m_1*m_2}{2*(m_1+m_2)}(v_1-v_2)^2(1-k^2)\\
+v_1'=\frac{m_1*v_1+m_2*v_2-(v_1-v_2)m_2*k}{m_1+m_2}\\
+v_1'=\frac{m_1*v_1+m_2*v_2+(v_1-v_2)m_1*k}{m_1+m_2}\\
+k=\sqrt{\frac{h_2}{h_1}}
+\end{eqnarray}
+\newpage
+\subsubsection{Spezialf{"a}lle}
+\textbf{Ballistisches Pendel}\\
+\begin{eqnarray}
+E_{pot}=E_{kin}\\
+v_{kh}=\sqrt{2*g*h}\\
+v_{kh}=\frac{v_k*m_k}{m_k+m_h}=\sqrt{2*g*h}\\
+v_k=\frac{m_h+m_k}{m_k}*\sqrt{2*g*h}
+\end{eqnarray}
+\newpage
+\subsection{Drehbewegung}
+\begin{eqnarray}
+F_r=\frac{m*v^2}{r}=m*\omega^2*r=p*\omega\\
+F_Z=\frac{m*v^2}{r}=m*\omega^2*r=p*\omega=-F_r\\
+a_C=2*v*\omega\\
+F_C=2*m*v*\omega\\
+\vec{F_C}=2*m(\vec{v}\times\vec{\omega})\\
+F_C=2*m*v*\omega*\sin\phi\\
+\end{eqnarray}
+\textbf{Arbeit bei der Rotation}\\
+\begin{eqnarray}
+W=M*\phi\\
+W=\int_{\phi_1}^{\phi_2}Md\phi\\
+\end{eqnarray}
+\textbf{Leistung bei der Rotation}\\
+\begin{eqnarray}
+P=M\omega
+\end{eqnarray}
+\textbf{Rotationsenergie}\\
+\begin{eqnarray}
+E_{rot}=\frac{J*\omega^2}{2}\\
+\d{E_{rot}}=\frac{J}{2}(\omega_2^2-\omega_1^2)
+\end{eqnarray}
+\textbf{Drehimpuls}\\
+\begin{eqnarray}
+\vec{L}=J\vec{\omega}\\
+\vec{L}=\vec{r}\times\vec{p}=m*\vec{r}\times\vec{v}\\
+\d{\vec{L}}=J\d{\vec{\omega}}=\vec{M}\d{t}=\int_{t_1}^{t_2}\vec{M} dt\\
+\vec{M}=\frac{d\vec{L}}{dt}=\frac{d(J\vec{\omega})}{dt}=\dot{\vec{L}}\\
+L_{ges}=\sum_{i=1}^{n}\vec{L_i}
+\end{eqnarray}
+\newpage
+\subsection{Tr{"a}gheitsmoment}
+Tr{"a}gheitsmoment \ensuremath{J_s} einiger K{"o}rper: \sS{131},\sS{132}
+\begin{eqnarray}
+M=J*\alpha\\
+\vec{F}=J*\vec{\alpha}\\
+J=r^2\d{m}=\sum_{i=1}^{n}r_i^2\d{m_i}\\
+J=\int_{0}^{m_{ges}}r^2 dm=\rho\int_{0}^{V_{ges}}r^2 dV\\
+J_S=m*r^2\\
+J_A=J_S+m*s^2\\
+m_{red}=\frac{J}{r^2}
+i=\sqrt{\frac{J}{m}}\\
+m*D^2=4J
+\end{eqnarray}
+Reduzierte Masse einiger K{"o}rper: \sS{134}\\
+Tr{"a}gheitsradien eigener K{"o}rper: \sS{134} 
+\newpage
+\section{Gravitation}
+Daten des Sonnensystem: \sS{148},\sS{149}\\
+\begin{eqnarray}
+F_G=\frac{m_1*m_2}{r^2}\\
+g=g_0\frac{R^2}{r^2}=\frac{G*M}{r^2}\\
+g_0*R^2=G*M\\
+\vec{g}=\frac{\vec{F}}{m}\\
+W=G*M*m(\frac{1}{r_1}-\frac{1}{r_2})\\
+v_K=R\sqrt{\frac{g_o}{r}}=\sqrt{\frac{G*M}{r}}\\
+r=\sqrt[3]{\frac{R^2*g_0*T^2}{4*\pi^2}}=\sqrt[3]{\frac{G*M*T^2}{4*\pi^2}}
+\end{eqnarray}
+Kepler'sche Gesetze: \sS{147f}
+\newpage
+\section{Schwingungen}
+\begin{eqnarray}
+\phi==\omega*t+\phi_0=2\pi*f+t+\phi_0\\
+y=\hat{y}\sin\phi=\hat{y}\sin(\omega*t+\phi_0)\\
+v=\hat{y}\omega\cos\phi=\hat{v}*\cos\phi\\
+\hat{v}=\hat{y}\omega\\
+a=-\hat{y}\omega^2\sin\phi=\hat{a}\sin\phi=-y\omega^2\\
+\hat{a}=-\hat{y}\omega^2\\
+F_R=-m\omega^2\hat{y}\sin\phi=m\hat{a}\sin\phi=-m\omega^2y\\
+k=m\omega^2=-\frac{F_R}{y}\\
+\ddot{y}+y\omega^2=0
+\end{eqnarray}
+\textbf{Lineare Federschwingung}\\
+\begin{eqnarray}
+k=\frac{F}{\d{l}}\\
+\omega=\sqrt{\frac{k}{m}};f=\frac{1}{2\pi}\sqrt{\frac{k}{m}}; 
+T=2\pi\sqrt{\frac{m}{k}}
+\end{eqnarray}
+\textbf{Drehschwingung}\\
+\begin{eqnarray}
+\epsilon=\hat{\epsilon}\sin\phi=\hat{e}\sin(\omega t+\phi_0)\\
+\dot{e}=\hat{e}\omega\cos\phi=\hat{\dot{\epsilon}}\cos\phi\\
+\ddot{\epsilon}=-\hat{\epsilon}\omega^2\sin\phi=-\hat{\ddot{\epsilon}}\sin\phi=-\epsilon\omega^2\\
+\omega=\sqrt{\frac{D}{J}};f=\frac{1}{2\pi}\sqrt{\frac{D}{J}}; 
+T=2\pi\sqrt{\frac{J}{D}}
+\end{eqnarray}
+\textbf{Pendelschwingungen}\\
+\begin{eqnarray}
+\text{Mathematisches Pendel}\\
+T=2\pi\sqrt{\frac{l}{g}}\\
+\text{Physisches Pendel}\\
+T=2\pi\sqrt{\frac{J_A}{m*g*s}}\\
+\text{Reduzierte Pendell{"a}nge}\\
+l'=\frac{J_A}{m*g*s}\\
+J_S=m*s*(\frac{gT^2}{4\pi^2}-s)
+\end{eqnarray}
+\textbf{Fl{"u}ssigkeitsschwingungen}\\
+\begin{eqnarray}
+T=2\pi\sqrt{\frac{l}{2g}}
+\end{eqnarray}
+\subsection{Schwingungsenergie}
+\begin{eqnarray}
+E=\frac{k*\hat{y}^2}{2}=\frac{m*\hat{v}^2}{2}
+\end{eqnarray}
+{"U}bersicht von Schwingungsenergi: \sS{205}
+\newpage
+\subsection{Freie ged{"a}mpfte Schwingung}
+\begin{eqnarray}
+\ddot{y}+2\delta\dot{y}+\omega_0^2=0\\
+y=\hat{y}_0e^{-\delta t}\sin\phi\\
+y=\frac{\hat{v}}{\omega_d}e^{-\delta t}\sin\omega_d *t\\
+y=\hat{y_0}e^{-\delta 
+*t}\frac{\omega_0}{\omega_d}cos(\omega_d*t-\arcsin\frac{\delta}{\omega_0})\\
+\hat{y}_{i+n}=\frac{\hat{y_i}}{q^n}\\
+e^{\delta T_d*n}=\frac{\hat{y}_i}{\hat{y}_{i+n}}=q^n\\
+\Lambda=\delta T_d=\ln\frac{\hat{y}_i}{\hat{y}_{i+1}=\ln q}\\
+\tau=\frac{1}{\delta}\\
+T_{H}=\frac{\ln 2}{\delta}\\
+\omega_d=\sqrt{\omega_0^2-\delta^2}=\omega_0\sqrt{1-\vartheta^2}\\
+T_d=\frac{2\pi}{\sqrt{\omega_0^2-\delta^2}}=\frac{T_0}{\sqrt{1-\vartheta^2}}\\
+y=\frac{\hat{v}}{\omega_d'}e^{-\delta t}\sinh\omega_d't\\
+y=\hat{y}_0e^{-\delta t}\cosh\omega_d't\\
+y=\hat{v}te^{-\delta t}\\
+y=\hat{y}_0(1+\delta t)e^{-\delta t}
+\end{eqnarray}
+{"U}bersicht ged{"a}mpfte Schwingungen: \sS{211}
+\newpage
+\subsection{Erzwungene Schwingung}
+\begin{eqnarray}
+\ddot{y}+2\delta\dot{y}+\omega_0^2y=\frac{\hat{F}_E}{m}\cos\omega*t\\
+y=\hat{y}\cos(\omega*t-\alpha)\\
+\hat{y}=\frac{\hat{F_E}}{\sqrt{m^2(\omega_0^2-\omega^2)^2+\beta^2\omega^2}}\\
+\alpha=\arctan\frac{\omega\beta}{m*(\omega_0^2-\omega^2)}=\arctan\frac{2\omega\delta}{\omega_0^2-\omega^2}\\
+\hat{y}_{st}=\frac{\hat{F}_E}{m\omega_0^2}\\
+\omega_R=\sqrt{\omega_0^2-\frac{\beta^2}{2m^2}}=\sqrt{\omega_0^2-2\delta^2}\\
+\hat{y}=\frac{\hat{F}_E}{\beta\sqrt{\omega_0^2-\delta^2}}=\frac{\hat{F}_E}{\beta\omega_d}\\
+\frac{\hat{y}_R}{\hat{y}_{st}}=\frac{\omega_0^2}{2\delta\sqrt{\omega_0^2-\delta^2}}=\frac{\omega_0^2}{2\delta\omega_d}=\frac{\pi\omega_0^2}{\Lambda\omega_d^2}\\
+Q\approx\frac{\pi}{\Lambda}\\
+\frac{\hat{y}}{\hat{y}_{st}}=\frac{\omega_0^2}{\sqrt{(\omega_0^2-\omega^2)^2+(2\delta\omega)^2}}\\
+\end{eqnarray}
+\newpage
+\subsection{{"U}berlagerung von Schwingungen}
+\subsubsection{gleiche Richtung und Frequenz}
+\begin{eqnarray}
+y_R=\hat{y}_R\sin(\omega*t+\phi_{0R})\\
+\hat{y}_R=\sqrt{\hat{y}_1^2+\hat{y}_2^2+2\hat{y}_1\hat{y}_2\cos(\phi_{01}-\phi_{02})}\\
+\phi_{0R}=\arctan\frac{\hat{y}_1\sin\phi_{01}+\hat{y}\sin\phi_{02}}{\hat{y}_1\cos\phi_{01}+\hat{y}\cos\phi_{02}}\\
+\hat{y}_R=2\hat{y}_1\cos\frac{\phi_{01}-\phi_{02}}{2}\\
+\phi_{0R}=\frac{\phi_{01}+\phi_{02}}{2}\\
+\end{eqnarray}
+\subsubsection{gleiche Richtung ungleiche Frequenz}
+\begin{eqnarray}
+y_R=2\hat{y}\cos(\frac{\omega_1-\omega_2}{2}*t)\sin(\frac{\omega_1+\omega_2}{2}*t)\\
+f_s=f_1-f_2\\
+T_s=\frac{T_1T_2}{T_2-T_1}\\
+f_R=\frac{f_1+f_2}{2}=\overline{f}\\
+T_R=\frac{2T_1T_2}{T_1+T_2}
+\end{eqnarray}
+\subsubsection{ungleiche Richtung}
+\sS{222ff.}
+\newpage
+\section{Elektrische und Magnetische Felder}
+\subsection{Magentisches Feld}
+\vspace{5cm}
+\begin{eqnarray}
+\text{Coulubsches Gesetz: } 
+\vec{F}=\frac{1}{4\pi\epsilon_0\epsilon_r}*\frac{Q_1*Q_p}{r^2}\\
+\text{Feldst{"a}rke auf Probeladung: } \vec{E}=\frac{\vec{F}}{Q}\\
+\text{Gravitation: } F=y\frac{m_1*m_2}{r^2}\\
+\text{Spezifischer Widerstand: } R=\frac{1}{\kappa}*\frac{l}{A}\\
+\text{L{"a}ngsysmetrie}\Rightarrow\text{mag. Quadrat bei U}\\
+\text{FL{"a}chensymetrie}\Rightarrow\text{mag. Quadrat bei I}\\
+\text{Grentfl{"a}chen im St{"o}rfeld: }\\
+\text{Reihenschaltung: 
+}\frac{E_1}{E_2}=\frac{\kappa_2}{\kappa_1}=\frac{\rho_1}{\rho_2}\\
+\text{Parallelschaltung: 
+}\frac{J_1}{J_2}=\frac{\kappa_1}{\kappa_2}=\frac{\rho_2}{\rho_1}\\
+\text{Leistung im Str{"o}mungsfeld: 
+}P=\int\vec{E}d\vec{s}*\int\int\kappa\vec{E}d\vec{A}\\
+\text{Leistungsdichte: } p=\frac{P}{V}
+\end{eqnarray}
+\newpage
+\subsection{Elektrisches Feld}
+\vspace{5cm}
+\begin{eqnarray}
+\text{Flussdichte: } D=\frac{\Psi}{A}=\epsilon E\\
+\text{Gau{\ss}scher Satz der Elektrostatik: 
+}\Psi=\iint\vec{D}d\vec{A}=\iint\epsilon\vec{E}d\vec{A}\\
+\text{Kapazit{"a}t: }C=\frac{\Psi}{U}; C=\frac{\epsilon_0\epsilon_r A}{d}\\
+\text{Zylinderkondensator geschichtet: } C=\frac{2\pi 
+l}{\ln(\prod_{i=2}^{n}(\frac{r_i}{r_{i-1}})^{\frac{1}{\epsilon_{i-1}}} }\\
+\text{Verbrauchergesetzt des Kondensators: 
+}i=C*\frac{du}{dt};\\
+\text{Spannungstr{"a}gheit }u=\d{U}=\frac{1}{C}\int_0^t 
+idt=\frac{q}{C}\\
+\text{Reihenschaltung von Kondensatoren:}\\\text{Verhalten sich wie 
+Widerst{"a}ande 
+bei 
+Paralellschlatung}\\
+\text{Kapazitivier Spannungsteiler: 
+}\frac{U_1}{U_2}=\frac{C_2}{C_1};\frac{U_2}{U_{ges}}=\frac{C_1}{C_1+C_2}\\
+\text{Paralellschaltung von Kondensatoren:}\\\text{Verhalten sich wie 
+Widerst{"a}nde in Reihe}\\
+\text{Kapazitiver Stromteiler: 
+}\frac{i_1}{i_2}=\frac{C_1}{C_2};\frac{i_2}{i_{ges}}=\frac{C_2}{C_1+C_2}
+\end{eqnarray}
+\newpage
+\begin{eqnarray}
+\text{Selbstenlatung: }\tau_{iso}=\frac{\epsilon_r\epsilon_0}{k}\\
+\text{Geschichtetes Dielektrikum: }
+\text{Reihenschaltung: } \frac{E_1}{E_2}=\frac{\epsilon_{r2}}{\epsilon_{r1}}\\
+\text{Paralellschaltung: } \frac{D_1}{D_2}=\frac{\epsilon_{r1}}{\epsilon_{r2}}\\
+\text{Gespeicherte Energie: 
+}W=\frac{1}{2}*C*U^2=\frac{1}{2}*\frac{Q^2}{C}=\frac{1}{2}i_{max}*\tau*U\\
+\text{Inhomogenes Feld: } W=\iint\epsilon\vec{E}d\vec{A}*\int \vec{E}d\vec{s}\\
+\text{Kraft zwischen 2 Kondensatorplatten: } F_q=-\frac{1}{2}Q*E\\
+\text{Spezielle Kondensatoren: }\\
+\text{Sichtkondensator: } C=(n-1)*\frac{A*s*\epsilon}{d}\\
+\text{Wickelkondensator: }C=2*\frac{\epsilon A}{d};A=l*b\\
+\text{Drehkondensator: }C=(n-1)*\frac{\alpha}{\pi}*\frac{A*\epsilon}{d}
+\end{eqnarray}
+\textbf{Geladene Kondensatoren in Reihe}\\
+Anfangswerte: \ensuremath{U_{1\alpha}=\frac{Q_{1\alpha}}{C_1}};\\ 
+Gesamtspannung=Spannungszuwachs+Gesamtanfangsspannung: 
+\ensuremath{u_g=\frac{1}{C_e}*\int_{0}^{t}idt=I_q*\d{t}}\\
+Vorgehensweise bei einer Idealen Spannungsquelle:
+\begin{itemize}
+\item Brechung der Anfangsspannungen
+\item Berechnung von der verschobenen Ladung
+\item Entspannung am Kondensator
+\item Kontrolle {"u}ber die obige Formel
+\end{itemize}
+Vorgehensweise bei idealer Spannungsquelle:
+\begin{itemize}
+\item Wirkspannung am ge{"o}ffneten Schalter berechnen
+\item Verschobenen Ladung in dem Fall: \ensuremath{\d{Q}=C_e*U_w}
+\item Spannung Kondensator: 
+\ensuremath{U_{ie}=\d{U}+U_{ia}=\frac{Q_v}{C_1}+U_{ia}}
+\end{itemize} 
+\textbf{Geladene Kondensatoren Parallel}\\
+Spannung an den Kondensatoren: \ensuremath{U_p=\frac{Q_ges}{C_ges}}, 
+Anschließend neue Ladungsverteilung berechnen
+\end{document}

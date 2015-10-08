@@ -1,0 +1,498 @@
+% ################################################################
+% #                                                              #
+% # Autor: Michael Epping                                        #
+% # E-Mail: michael.epping@uni-muenster.de                       #
+% # Version: 1.4                                                 #
+% # Datum: Juni 2013                                             #
+% # Info: Diese Datei sollte nicht verändert werden.             #
+% #    Hier werden die Einstellungen festgelegt und              #
+% #    Pakete eingebunden. Alles weitere wird über               #
+% #    die Dateien verändert, die mit "0X_" beginnen.            #
+% # Copyright: CC0 (macht mit diesen Dateien was ihr wollt)      #
+% #    https://creativecommons.org/publicdomain/zero/1.0/deed.de #
+% #                                                              #
+% ################################################################
+
+% Änderungen 1.2 -> 1.3
+% * Bei der Verwendung von texlive2012 gibt es Probleme mit myalphadin.
+%   Diese Vorlage für Einträge insLiteraturverzeichnis habe ich durch unsrtdin ersetzt.
+% * Da ich jetzt mit TeXlipse arbeite, habe ich ein paar Anpassungen vorgenommen.
+%   So ist z.B. der Name der bib-Datei fest vorgegeben, damit auch die Autovervollständigung bei BibTeX-Keys funktioniert.
+% * Zusätzliche Kommentare sollten das Arbeiten mit dieser Vorlage erleichtern.
+% * Die Vorlage enthält sinnvollen Text und nicht nur nutzlose Platzhalter.
+
+% Änderungen 1.3 -> 1.4
+% * Das Paket "ifthenx" gibt es unter Ubuntu 12.04 mit texlive 2009-15 nicht. Als alternative habe ich "xifthen" eingetragen.
+% * Tabulatoren habe ich durch Leerzeichen ersetzt. Dadurch bleibt das Layout (Einrücken und Position Kommentare) erhalten, 
+%   egal mit welchem Editor man die Dateien öffnet.
+% * Ich habe einen Copyright-Vermerk hinzugefügt, nämlich dass es im Prizip keines gibt.
+% * Neuer Abschnitt: latexmk
+% * Neuer Abschnitt: Verbatim
+% * Die Bilddatei "titelseite.jpg" wurde entfernt (wegen Copyright), da die Vorlage ab jetzt öffentlich zugänglich sein soll.
+% * "README.txt" im Verzeichnis Bilder wurde erstellt.
+% * Literaturangabe der Anleitung zur Optik, Wärmelehre und Atomphysik hinzugefügt. 
+
+% ###############
+% # Allgemeines #
+% ###############
+
+% Zeilen, die mit einem Prozentzeichen beginnen sind Kommentare. 
+% Alle verwendeten Funktionen sind mit solchen Kommentaren versehen, so dass man den Zweck der jeweiligen Funktion nachvollziehen kann.
+
+% ######################################
+% # Konfigurieren der Dokumentenklasse #
+% ######################################
+
+\documentclass[
+    a5paper,                                               % Papierformat
+    landscape,
+    oneside,                                               % Einseitig
+    %twoside,                                              % Zweiseitig
+    12pt,                                                  % Schriftgröße
+    pagesize=auto,                                         % schreibt die Papiergröße korrekt ins Ausgabedokument
+    headsepline,                                           % Linie unter der Kopfzeile
+    %draft=true                                            % Markiert zu lange und zu kurze Zeilen
+]{scrreprt}
+% Es gibt die Dokumenttypen scrartcl, srcbook, scrreprt und scrlettr. Diese gehören zum KOME-Skript und sollten für deutsche Texte benutzt werden.
+% Für englische Texte wählt man entsprechend article, book, report und letter.
+% Es ist  nicht unbedingt zu empfehlen, bei einem bestehendem Dokument, die documentclass zu ändern.
+
+% ####################
+% # Pakete einbinden #
+% ####################
+
+% Pakete erweitern LaTeX um zusätzliche Funktionen. Dies ist eine Satz nützlicher Pakete.
+% Weitere sollten in der Datei"`01_EigenePakete.tex"' hinzugefügt werden.
+\usepackage[utf8x]{inputenc}                                                  % Legt die Zeichenkodierung fest, z.B UTF8
+\usepackage[T1]{fontenc}                                                      % Verwendung der Zeichentabelle T1, für deutschsprachige Dokumente sinnvoll
+\usepackage[ngerman,english]{babel}                                           % Silbentrennung nach neuer deutscher und englischer Rechtschreibung
+\usepackage{amsmath}                                                          % Mathepaket
+\usepackage{amssymb}                                                          % Mathepaket
+\usepackage{xifthen}                                                          % Wird benötigt um \ifthenelse zu benutzen
+%\usepackage{graphicx}                                                 % Zum flexiblen Einbinden von Grafiken, pdftex ist optional
+\usepackage[pdftex]{graphicx}                                                 % Zum flexiblen Einbinden von Grafiken, pdftex ist optional
+\usepackage{units}                                                            % Ermöglicht die Nutzung von \unit[Zahl]{Einheit}
+\usepackage{setspace}                                                         % Einfaches wechseln zwischen unterschiedlichen Zeilenabständen
+%\usepackage{hyperref}                                          % Verlinkt Textstellen im PDF Dokument
+\usepackage[pdfpagelabels]{hyperref}                                          % Verlinkt Textstellen im PDF Dokument
+\usepackage[font=small,labelfont=bf,labelsep=endash,format=plain]{caption}    % Darstellung für Caption s.u.
+\usepackage{subfig}                                                           % Bilder nebeneinander
+\usepackage{wrapfig}                                                          % Fließtext um Figure-Umgebung
+\usepackage{cite}                                                             % Zusatzfunktionen zum zitieren
+\usepackage{scrpage2}                                                         % Wird für Kopf- und Fußzeile benötigt
+\usepackage{array,dcolumn}                                                    % Beide Pakete werden für die Ausrichtung der Tabellenspalten benötigt
+
+
+% ############################
+% # weitere Pakete einbinden #
+% ############################
+
+% \usepackage{showframe}
+% Die Folgenden Pakete sind schon eingebunden (siehe 00_Protokoll.tex):
+% \usepackage[utf8x]{inputenc}                             % Legt die Zeichenkodierung fest, z.B UTF8
+% \usepackage[T1]{fontenc}                                 % Verwendung der Zeichentabelle T1, für deutschsprachige Dokumente sinnvoll
+% \usepackage[ngerman,english]{babel}                      % Silbentrennung nach neuer deutscher und englischer Rechtschreibung
+% \usepackage{amsmath}                                     % Mathepaket
+% \usepackage{amssymb}                                     % Mathepaket
+% \usepackage{ifthenx}                                     % Wird benötigt um \ifthenelse zu benutzen
+% \usepackage[pdftex]{graphicx}                            % Zum flexiblen Einbinden von Grafiken, pdftex ist optional
+% \usepackage{rotating}                            % Zum drehen von Objekten, pdftex ist optional
+  \usepackage[pdftex]{rotating}                            % Zum drehen von Objekten, pdftex ist optional
+% \usepackage{units}                                       % Ermöglicht die Nutzung von \unit[Zahl]{Einheit}
+% \usepackage{setspace}                                    % Einfaches wechseln zwischen unterschiedlichen Zeilenabständen
+% \usepackage[pdfpagelabels]{hyperref}                     % Verlinkt Textstellen im PDF Dokument
+% \usepackage[font=small,labelfont=bf,labelsep=endash,format=plain]{caption}
+%                                                          % Darstellung für Caption s.u.
+% \usepackage{subfig}                                      % Bilder nebeneinander
+% \usepackage{wrapfig}                                     % Fließtext um Figure-Umgebung
+% \usepackage{cite}                                        % Zusatzfunktionen zum zitieren
+% \usepackage{scrpage2}                                    % Wird für Kopf- und Fußzeile benötigt
+% \usepackage{array,dcolumn}                               % Beide Pakete werden für die Ausrichtung der Tabellenspalten benötigt
+  \usepackage{enumerate}                                   % Um andere Aufzählungsvarianten zu erzeugen http://ctan.org/pkg/enumerate
+  \usepackage{xcolor}
+  \usepackage{ulem}
+% \usepackage{mathtools}
+  \usepackage{longtable}
+  \usepackage{tabularx}                                    % http://ctan.org/pkg/tabularx
+  \usepackage{booktabs}                                    % http://ctan.org/pkg/booktabs
+% \usepackage{a4wide}
+  \usepackage{geometry}
+  \usepackage{amsthm}
+% \usepackage{pstricks-add}
+% \usepackage{pstricks}
+  \usepackage{pgf,tikz}
+  \usetikzlibrary{arrows}
+  \usepackage{chngcntr}
+\input{kvmacros}
+
+% ############################
+% # Eigene Befehle einbinden #
+% ############################
+
+\newcolumntype{E}{>{\begin{math}\displaystyle}c<{\end{math}}}%e wie Equation
+\newcolumntype{K}{m{0.45\textwidth}}% K wie kommentar
+\geometry{a5paper, landscape, left=25mm, right=20mm, top=22mm, bottom=15mm} 
+
+\counterwithin{chapter}{part}
+\renewcommand{\thechapter}{\arabic{chapter}}
+
+% Eigene Befehle eignen sich gut um Abkürzungen für lange Befehle zu erstellen. Die Syntax ist folgende:
+% \newcommand{neuer Befahl}{ein langer Befehl}
+% Das folgende Beispiel fügt ein Bild mit bestimmten vorgegebenen Optionen ein:
+\newcommand{\cImage}[1]{
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.50\textwidth]{#1}
+	\end{figure}
+}
+
+% Images
+\newcommand{\img}[3]{
+	\begin{center}
+		\begin{figure}[h!]
+			\centering \includegraphics[width=\linewidth]{#1}
+			\caption{#2}
+			\label{#3}
+		\end{figure}
+	\end{center}
+}
+\newcommand{\imgh}[4]{
+	\begin{center}
+		\begin{figure}[h!]
+			\centering \includegraphics[height=#4]{#1}
+			\caption{#2}
+			\label{#3}
+		\end{figure}
+	\end{center}
+}
+\newcommand{\imgw}[4]{
+	\begin{center}
+		\begin{figure}[h!]
+			\centering \includegraphics[width=#4]{#1}
+			\caption{#2}
+			\label{#3}
+		\end{figure}
+	\end{center}
+}
+\newcommand{\imgwh}[5]{
+	\begin{center}
+		\begin{figure}[h!]
+			\centering \includegraphics[width=#4,height=#5]{#1}
+			\caption{#2}
+			\label{#3}
+		\end{figure}
+	\end{center}
+}
+
+% #1 ist dabei ein Parameter, den man \cImage übergeben muss. In 10_Titelseite.tex wird dieser Befehl verwendet. Der Parameter ist dort Bilder/titelseite.jpg.
+% Benötigt man keine Parameter, dann lässt man [1] weg. Werden zusätzliche Parameter benötigt, dann kann man die Zahl auf maximal 9 erhöhen.
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{12pt}
+
+% Disjunkte Vereinigung
+\makeatletter
+\def\moverlay{\mathpalette\mov@rlay}
+\def\mov@rlay#1#2{\leavevmode\vtop{%
+		\baselineskip\z@skip \lineskiplimit-\maxdimen
+		\ialign{\hfil$\m@th#1##$\hfil\cr#2\crcr}}}
+\newcommand{\charfusion}[3][\mathord]{
+	#1{\ifx#1\mathop\vphantom{#2}\fi
+		\mathpalette\mov@rlay{#2\cr#3}
+	}
+	\ifx#1\mathop\expandafter\displaylimits\fi}
+\makeatother
+
+\newcommand{\cupdot}{\charfusion[\mathbin]{\cup}{\cdot}}
+\newcommand{\bigcupdot}{\charfusion[\mathop]{\bigcup}{\cdot}}
+\newcommand{\bigX}{\charfusion[\mathop]{{\LARGE\text{$\times$}}}{\ }}
+
+% Text Color
+\definecolor{mygreen}{rgb}{0.1, 0.8, 0.1}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\green}[1]{\textcolor{mygreen}{#1}}
+\newcommand{\gray}[1]{\textcolor{gray}{#1}}
+\newcommand{\black}[1]{\textcolor{black}{#1}}
+\newcommand{\white}[1]{\textcolor{white!0}{#1}}
+
+% Boxes
+\newcommand{\graybox}[1]{{\vspace{2pt}\fcolorbox{black!80}{black!10}{#1}\vspace{2pt}}}
+\newcommand{\redbox}[1]{{\vspace{2pt}\fcolorbox{red}{red!15}{#1}\vspace{2pt}}}
+\newcommand{\greenbox}[1]{{\vspace{2pt}\fcolorbox{green}{green!15}{#1}\vspace{2pt}}}
+\newcommand{\bluebox}[1]{{\vspace{2pt}\fcolorbox{blue}{blue!15}{#1}\vspace{2pt}}}
+\newcommand{\Graybox}[1]{\fcolorbox{black!80}{black!10}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}
+\newcommand{\Redbox}[1]{\fcolorbox{red}{red!15}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}
+\newcommand{\Greenbox}[1]{\fcolorbox{green}{green!15}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}
+\newcommand{\Bluebox}[1]{\fcolorbox{blue}{blue!15}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}
+% Frames
+\newcommand{\grayframe}[1]{{\color{black!30}\fbox{\color{black}#1}}}
+\newcommand{\redframe}[1]{{\color{red}\fbox{\color{black}#1}}}
+\newcommand{\greenframe}[1]{{\color{green}\fbox{\color{black}#1}}}
+\newcommand{\blueframe}[1]{{\color{blue}\fbox{\color{black}#1}}}
+\newcommand{\Grayframe}[1]{{\color{black!30}\fbox{\color{black}\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}}
+\newcommand{\Redframe}[1]{{\color{red}\fbox{\color{black}\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}}
+\newcommand{\Greenframe}[1]{{\color{green}\fbox{\color{black}\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}}
+\newcommand{\Blueframe}[1]{{\color{blue}\fbox{\color{black}\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}}}
+
+% Bsp
+%\grayframe{grayframe}
+%\redframe{redframe}
+%\greenframe{greenframe}
+%\Grayframe{Grayframe}
+%\Redframe{Redframe}
+%\Greenframe{Greenframe}
+%\graybox{graybox}
+%\redbox{redbox}
+%\greenbox{greenbox}
+%\Graybox{Graybox}
+%\Redbox{Redbox}
+%\Greenbox{Greenbox}
+
+
+
+% Usefull
+\renewcommand{\emph}[1]{\textit{#1}}
+
+\newtheoremstyle{satzstyle}{15pt}{15pt}{}{-42pt}{\bf}{:}{1em}{}
+\theoremstyle{satzstyle}
+\newtheorem*{satz}{Satz}
+\newtheoremstyle{theoremstyle}{15pt}{15pt}{}{-67pt}{\bf}{:}{1em}{}
+\theoremstyle{theoremstyle}
+\newtheorem*{theorem}{Theorem}
+\newtheoremstyle{lemmastyle}{15pt}{15pt}{}{-59pt}{\bf}{:}{1em}{}
+\theoremstyle{lemmastyle}
+\newtheorem*{lemma}{Lemma}
+\newcommand{\PP}{\red{\bf Prüfungsrelevant (P)\quad}\marginpar[\red{\bf (P)}]{\red{\bf (P)}}}
+\newcommand{\Def}{\paragraph{Definition:}}
+\newcommand{\Bem}{\paragraph{Bemerkung:}}
+\newcommand{\Bsp}{\paragraph{Beispiel:}}
+\newcommand{\Bsps}{\paragraph{Beispiele:}}
+\newcommand{\Beachte}{\paragraph{Beachte:}}
+\newcommand{\Beweis}{\paragraph{Beweis:}}
+\newcommand{\Formel}{\paragraph{Formel:}}
+\newcommand{\Problem}{\paragraph{Problem:}}
+\newcommand{\Beh}{\paragraph{Behauptung:}}
+\newcommand{\Prosa}{\paragraph{Prosa:}}
+\newcommand{\Frage}{\paragraph{Frage:}}
+\newcommand{\Idee}{\paragraph{Idee:}}
+\newcommand{\Allg}{\paragraph{Allgemein:}}
+\newcommand{\Trick}{\paragraph{Trick:}}
+\newcommand{\Tipp}{\paragraph{Tipp:}}
+\newcommand{\Merke}{\paragraph{Merke:}}
+\newcommand{\Ziel}{\paragraph{Ziel:}}
+\newcommand{\Praxis}{\paragraph{Praxis:}}
+%\newcommand{\Satz}[1]{\paragraph{Satz:}\graybox{#1\hfill}}
+%\newcommand{\Satz}[1]{\paragraph{Satz:}
+%	
+%	\Graybox{#1}}
+\newcommand{\Satz}[1]{\begin{satz}\begin{minipage}{\linewidth}\Graybox{#1}\end{minipage}\end{satz}}
+%\newcommand{\SATZ}[1]{\paragraph{Satz:}
+%	
+%	\Graybox{#1}}
+\newcommand{\Theorem}[1]{\begin{theorem}\Graybox{#1}\end{theorem}}
+%\newcommand{\Theorem}[1]{\paragraph{Theorem:}
+%	
+%	\Graybox{#1}}
+\newcommand{\Lemma}[1]{\begin{lemma}\Graybox{#1}\end{lemma}}
+%\newcommand{\Lemma}[1]{\paragraph{Lemma:}
+%	
+%	\Graybox{#1}}
+
+% Math
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\No}{\mathbb{N}_0}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Zp}{\mathbb{Z}^+}
+\newcommand{\Zop}{\mathbb{Z}_0^+}
+\newcommand{\Zm}{\mathbb{Z}^-}
+\newcommand{\Zom}{\mathbb{Z}_0^-}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Qp}{\mathbb{Q}^+}
+\newcommand{\Qop}{\mathbb{Q}_0^+}
+\newcommand{\Qm}{\mathbb{Q}^-}
+\newcommand{\Qom}{\mathbb{Q}_0^-}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Rp}{\mathbb{R}^+}
+\newcommand{\Rop}{\mathbb{R}_0^+}
+\newcommand{\Rm}{\mathbb{R}^-}
+\newcommand{\Rom}{\mathbb{R}_0^-}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\D}{\mathbb{D}}
+\renewcommand{\L}{\mathbb{L}}
+
+% Grad
+\newcommand{\degree}{{^\circ}}
+
+% Differenzial
+\newcommand{\diff}[1]{\mathrm{d}#1}
+\newcommand{\df}[2]{\dfrac{\diff{#1}}{\diff{#2}}}
+\newcommand{\ddf}[2]{\dfrac{\diff{#1}}{\diff{#2}^2}}
+% Integral d korrekt formatieren
+\newcommand{\intd}[1]{\ \diff{#1}}
+% ^-1
+\newcommand{\inv}[1]{{#1}^{-1}}
+% Entspricht
+\newcommand{\entspricht}{\stackrel{\wedge}{=}}
+% Lines
+\newcommand{\oline}[1]{\overline{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+%\newcommand{\uline}[1]{\underline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+% Displaystyle
+\newcommand{\ds}{\displaystyle}
+% i
+\renewcommand{\i}{\imath}
+\newcommand{\ii}{\imath^2}
+% Arg()
+\newcommand{\Arg}{\mathbin\text{Arg}}
+% Ln()
+\newcommand{\Ln}{\mathbin\text{Ln}}
+% GF()
+\newcommand{\GF}{\mathbin\text{GF}}
+% ggT(), kgV()
+\newcommand{\ggT}{\mathbin\text{ggT}}
+\newcommand{\kgV}{\mathbin\text{kgV}}
+% sgn()
+\newcommand{\sgn}{\mathbin\text{sgn}}
+% grad()
+\newcommand{\grad}{\mathbin\text{grad}}
+%
+\newcommand{\arccot}{\mathbin\text{arccot}}
+\newcommand{\arsinh}{\mathbin\text{arsinh}}
+\newcommand{\arcosh}{\mathbin\text{arcosh}}
+\newcommand{\artanh}{\mathbin\text{artanh}}
+\newcommand{\arcoth}{\mathbin\text{arcoth}}
+% impliziert, äquivalent
+\newcommand{\imp}{\rightarrow}
+\newcommand{\eq}{\leftrightarrow}
+
+%
+\newcommand{\lxor}{\oplus}
+
+% Vectoren und Matrizen
+\newcommand{\vv}[2]{$\begin{pmatrix}#1\\#2\end{pmatrix}$}
+\newcommand{\vvv}[3]{$\begin{pmatrix}#1\\#2\\#3\end{pmatrix}$}
+\newcommand{\vvvv}[4]{$\begin{pmatrix}#1\\#2\\#3\\#4\end{pmatrix}$}
+
+\newcommand{\vvs}[2]{$\begin{pmatrix}#1&#2\end{pmatrix}$}
+\newcommand{\vvvs}[3]{$\begin{pmatrix}#1&#2&#3\end{pmatrix}$}
+\newcommand{\vvvvs}[4]{$\begin{pmatrix}#1&#2&#3&#4\end{pmatrix}$}
+
+\newcommand{\mm}[4]{$\begin{pmatrix}#1&#2\\#3&#4\end{pmatrix}$}
+\newcommand{\mmm}[9]{$\begin{pmatrix}#1&#2&#3\\#4&#5&#6\\#7&#8&#9\end{pmatrix}$}
+
+\newcommand{\mmmm}[8]{
+	\def\Argi{{#1}}%
+	\def\Argii{{#2}}%
+	\def\Argiii{#3}%
+	\def\Argiv{#4}%
+	\def\Argv{#5}%
+	\def\Argvi{#6}%
+	\def\Argvii{#7}%
+	\def\Argviii{#8}%
+	\mmmmContinue
+}
+
+\newcommand{\mmmmContinue}[8]{$\begin{pmatrix}\Argi&\Argii&\Argiii&\Argiv\\\Argv&\Argvi&\Argvii&\Argviii\\#1&#2&#3&#4\\#5&#6&#7&#8\end{pmatrix}$}
+
+
+% #########################
+% # Variablen importieren #
+% #########################
+
+\input{03_Variablen}
+\newboolean{showLiteratur}
+\newboolean{showAnhang}
+
+% #########################
+% # Beginn des Dokumentes #
+% #########################
+
+\begin{document}
+\selectlanguage{ngerman}                                   % Schreibsprache Deutsch
+\onehalfspacing                                            % 1 1/2 facher Zeilenabstand
+\addtokomafont{sectioning}{\rmfamily}                      % Schriftsatz
+\numberwithin{equation}{section}                           % Nummerierung der Formeln entsprechend der Section (z.B. 1.1)
+\addtokomafont{caption}{\small\linespread{1}\selectfont}   % ändert Schriftgröße und Zeilenabstand bei captions
+
+% Römische Ziffern als Seitenzahlen für Titelseite bis einschließlich dem Inhaltsverzeichnis
+\setcounter{page}{1}
+\pagenumbering{roman}
+
+% #######################################
+% # Kopf- und Fußzeile konfigurieren    #
+% #######################################
+
+%\ihead{\textit{\varFachShort\ - \varSemester}}             % Innenseite der Kopfzeile
+%\chead{}                                                   % Mitte der Kopfzeile
+%\ohead{\textit{\varDozent}}                                % Außenseite der Kopfzeile
+%\ifoot{}                                                   % Innnenseite der Fußzeile
+%\cfoot{- \textit{\pagemark} -}                             % Mitte der Fußzeile
+%\ofoot{}                                                   % Aussenseite der Fußzeile
+\ihead{\textit{\thechapter\ \leftmark}}                    % Innenseite der Kopfzeile
+\chead{}                                                   % Mitte der Kopfzeile
+\ohead{\textit{\small\thesection\ \rightmark}}             % Außenseite der Kopfzeile
+\ifoot{}                                                   % Innnenseite der Fußzeile
+\cfoot{- \textit{\pagemark} -}                             % Mitte der Fußzeile
+\ofoot{}                                                   % Aussenseite der Fußzeile
+
+\setlength{\footskip}{20pt}
+
+\renewcommand{\chaptermark}[1]{%
+	\markleft{#1}}
+\renewcommand{\sectionmark}[1]{%
+	\markright{#1}}
+
+% ###################################
+% # Ausrichtung der Tabellenspalten #
+% ###################################
+
+\newcolumntype{,}[1]{D{,}{,}{#1}}                          % , in Tabellen untereinander stellen
+\newcolumntype{p}{D{p}{\pm}{-1}}                           % +- in Tabellen untereinander stellen
+
+% ########################
+% # Titelseite einbinden #
+% ########################
+
+\input{04_Titelseite}
+
+% ################################
+% # Inhaltsverzeichnis einbinden #
+% ################################
+
+\tableofcontents
+\clearpage
+
+% Zurücksetzen der Seitenzahlen auf arabische Ziffern
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\pagestyle{scrheadings}                                    % Ab hier mit Kopf- und Fußzeile
+
+% ###################################
+% # Den Inhalt der Arbeit einbinden #
+% ###################################
+
+%\renewcommand{\thesection}{\Roman{section}} 
+\renewcommand{\labelitemi}{-}
+\input{10_Inhalt}
+
+% ###################################
+% # Literaturverzeichnis mit BibTeX #
+% ###################################
+
+\setboolean{showLiteratur}{\varZeigeLiteraturverzeichnis}
+\ifthenelse{\boolean{showLiteratur}}{
+    \clearpage
+    \bibliography{literatur}
+    \bibliographystyle{\varLiteraturLayout}
+}{}
+
+% #######################
+% # Ende des Dokumentes #
+% #######################
+
+\end{document}
